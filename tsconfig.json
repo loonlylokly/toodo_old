@@ -9,6 +9,15 @@
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "rootDir": ".",
+    "paths": {
+      "Src/*": ["./src/*"],
+      "Public/*": ["./public/*"],
+      "Widgets/*": ["./src/widgets/*"],
+      "Components/*": ["./src/components/*"],
+      "Shared/*": ["./src/shared/*"],
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "ts-node": {
     "compilerOptions": {
