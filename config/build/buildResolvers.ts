@@ -7,6 +7,8 @@ export function buildResolvers(options: BuildOptions): Configuration['resolve']{
     alias: {
       'Src': options.paths.src,
       'Public': `${options.paths.src}/../public/`,
+      'Types': `${options.paths.src}/types/`,
+      'Pages': `${options.paths.src}/pages/`,
       'Widgets': `${options.paths.src}/widgets/`,
       'Components': `${options.paths.src}/components/`,
       'Shared': `${options.paths.src}/shared/`,

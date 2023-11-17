@@ -1,0 +1,30 @@
+.task {
+  width: 100%;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 35px;
+  align-items: center;
+  border: 1px solid var(--color-text-primary);
+  border-radius: 12px;
+}
+
+.text {
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--color-text-primary);
+  word-break: break-all;
+}
+
+.text:nth-last-of-type(1) {
+  border-right: none;
+}
+
+.button {
+  height: 35px;
+  color: var(--color-back-primary);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 1rem;
+}

@@ -43,9 +43,9 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     use: [{ 
       loader: 'ts-loader',
       options: {
-        getCustomTransformers: () => ({
-          before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-        }),
+        // getCustomTransformers: () => ({
+        //   before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+        // }),
       }
     }],
   };

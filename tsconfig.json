@@ -13,6 +13,8 @@
     "paths": {
       "Src/*": ["./src/*"],
       "Public/*": ["./public/*"],
+      "Types/*": ["./src/types/*"],
+      "Pages/*": ["./src/pages/*"],
       "Widgets/*": ["./src/widgets/*"],
       "Components/*": ["./src/components/*"],
       "Shared/*": ["./src/shared/*"],

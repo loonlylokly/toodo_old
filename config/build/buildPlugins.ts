@@ -16,8 +16,8 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
       filename: 'css/[name]-[contenthash:8].css',
       chunkFilename: 'css/[name]-[contenthash:8].css',
     }),
-    isDev && new webpack.HotModuleReplacementPlugin(),
-    isDev && new ReactRefreshWebpackPlugin(),
+    // isDev && new webpack.HotModuleReplacementPlugin(),
+    // isDev && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean);
 
   return plugins;
