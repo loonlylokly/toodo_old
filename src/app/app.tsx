@@ -1,4 +1,4 @@
-import { MainPage } from "pages/MainPage/MainPage";
+import { MainPage } from "pages/mainPage/mainPage";
 
 export function App() {  
   return (

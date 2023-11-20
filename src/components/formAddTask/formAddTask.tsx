@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Button } from "shared/Button/Button";
-import { Input } from "shared/Input/Input";
-import { Task } from "types/Task";
-import styles from './FormAddTask.module.css'
+import { Button } from "shared/button/button";
+import { Input } from "shared/input/input";
+import { Task } from "types/task";
+import styles from './formAddTask.module.css'
 
 const OptionsDate: Intl.DateTimeFormatOptions = {
   day: '2-digit',

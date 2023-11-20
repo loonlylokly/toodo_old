@@ -1,4 +1,4 @@
-import styles from './Button.module.css';
+import styles from './button.module.css';
 
 type props = {
   type?: 'submit'|'reset'|'button',

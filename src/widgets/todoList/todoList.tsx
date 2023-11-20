@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { FormAddTask } from "components/FormAddTask/FormAddTask";
-import { ListTasks } from 'components/ListTasks/ListTasks';
-import { Task } from 'types/Task';
-import styles from './TodoList.module.css';
+import { FormAddTask } from "components/formAddTask/formAddTask";
+import { ListTasks } from 'components/listTasks/listTasks';
+import { Task } from 'types/task';
+import styles from './todoList.module.css';
 
 export function TodoList() {
   const [tasks, setTasks] = useState<Task[]>([]);
