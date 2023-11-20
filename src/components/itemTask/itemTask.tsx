@@ -1,8 +1,10 @@
 import { Button } from 'shared/button/button';
-import { Task } from 'types/task';
 import styles from './itemTask.module.css';
+import { useAppContext } from 'shared/providers/ServiceProvider';
 
-export function ItemTask({task, removeTask}: {task: Task, removeTask: (id: string)=>void}) {
+export function ItemTask({task}: {task: any}) {
+  const { removeTask } = useAppContext();
+
   return (
     <li className={styles.task}>
       <span className={styles.text}>{task.id}</span>

@@ -11,6 +11,7 @@
     "esModuleInterop": true,
     "rootDir": ".",
     "paths": {
+      "utils/*": ["./src/shared/utils/*"],
       "shared/*": ["./src/shared/*"],
       "components/*": ["./src/components/*"],
       "widgets/*": ["./src/widgets/*"],

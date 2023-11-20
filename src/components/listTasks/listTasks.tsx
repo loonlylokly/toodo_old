@@ -1,19 +1,18 @@
 import { ItemTask } from 'components/itemTask/itemTask';
-import { Task } from 'src/types/task';
 import styles from './listTasks.module.css';
+import { useAppContext } from 'shared/providers/ServiceProvider';
 
-type Props = {
-  tasks: Task[],
-  removeTask: (id: string) => void,
-}
+let test = 1;
 
-export function ListTasks({tasks, removeTask}: Props) {
+export function ListTasks() {
+  const {tasks} = useAppContext();
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list_task}>
         {
           tasks.length > 0 ?
-            tasks.map((task) => <ItemTask key={task.id} task={task} removeTask={removeTask}/>):
+            tasks.map((task: { id: any; text?: string; date?: string; }) => <ItemTask key={task.id} task={task} />):
             <h2>Empty</h2>
         }
       </ul>

@@ -5,6 +5,7 @@ export function buildResolvers(options: BuildOptions): Configuration['resolve']{
   return {
     extensions: ['.tsx', '.ts', '.js', '.css'],
     alias: {
+      'utils': `${options.paths.src}/shared/utils/`,
       'shared': `${options.paths.src}/shared/`,
       'components': `${options.paths.src}/components/`,
       'widgets': `${options.paths.src}/widgets/`,
