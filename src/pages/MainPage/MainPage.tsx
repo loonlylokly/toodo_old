@@ -1,5 +1,5 @@
-import { TodoList } from 'Src/widgets/TodoList/TodoList';
-import { Header } from 'Widgets/Header/Header';
+import { TodoList } from 'widgets/TodoList/TodoList';
+import { Header } from 'widgets/Header/Header';
 
 export function MainPage() {
   return (

@@ -55,17 +55,3 @@ p {
 section {
   padding-inline: 1rem;
 }
-
-button.primary {
-  color: var(--color-back-primary);
-  background-color: #0b113c;
-  border: none;
-  border-radius: 12px;
-}
-
-button.primary:disabled {
-  color: var(--color-back-primary);
-  background-color: rgb(161, 161, 161);
-  border: none;
-  border-radius: 12px;
-}

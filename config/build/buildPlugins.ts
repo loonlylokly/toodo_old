@@ -13,8 +13,8 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
       favicon: options.paths.favicon,
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name]-[contenthash:8].css',
-      chunkFilename: 'css/[name]-[contenthash:8].css',
+      filename: 'css/[name]-[contenthash].css',
+      chunkFilename: 'css/[name]-[contenthash].css',
     }),
     // isDev && new webpack.HotModuleReplacementPlugin(),
     // isDev && new ReactRefreshWebpackPlugin(),

@@ -1,3 +1,5 @@
+import styles from './Button.module.css';
+
 type props = {
   type?: 'submit'|'reset'|'button',
   width?: string,
@@ -21,7 +23,7 @@ export function Button({
 }: props) {
   return (
     <button
-      className={`${styleClass} ${styleClass ? '' : styleType}`}
+      className={`${styleClass} ${styles[styleType]}`}
       type={type}
       style={{width: width, height: height}}
       disabled={disabled}

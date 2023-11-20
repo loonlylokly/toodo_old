@@ -1,41 +1,35 @@
-import { useId, useRef, useState } from "react";
-import { Button } from "Src/shared/Button/Button";
-import { Input } from "Shared/Input/Input";
-import { Task } from "Src/types/Task";
+import { useRef, useState } from "react";
+import { Button } from "shared/Button/Button";
+import { Input } from "shared/Input/Input";
+import { Task } from "types/Task";
 import styles from './FormAddTask.module.css'
 
-export function FormAddTask({addTask}: {addTask: React.Dispatch<React.SetStateAction<Task[]>>}) {
+const OptionsDate: Intl.DateTimeFormatOptions = {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+};
+
+export function FormAddTask({addTask}: {addTask: (task: Task) => void}) {
   const inputTaskRef = useRef<HTMLInputElement>(null);
   const [disabled, setDisable] = useState<boolean>(true);
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    let textTask = inputTaskRef.current.value.toString();
-    let dateTask = new Date(Date.now());
-    const optionsDate: Intl.DateTimeFormatOptions = {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    };
-    addTask((prev) => [
-      ...prev,
-      {
-        id: (Date.now()).toString(),
-        text: textTask,
-        date: dateTask.toLocaleDateString('ru-RU', optionsDate).split(', ').join('_'),
-      }
-    ]);
+    const textTask = inputTaskRef.current.value.toString();
+    const dateTask = new Date(Date.now());
+    addTask({
+      id: (Date.now()).toString(),
+      text: textTask,
+      date: dateTask.toLocaleDateString('ru-RU', OptionsDate),
+    })
     inputTaskRef.current.value='';
   }
 
   const handleInput = () => {
-    const flag = inputTaskRef.current !== null && inputTaskRef.current.value.length === 0;
-    if (flag !== disabled) {
-      setDisable(flag);
-    }
+    setDisable(!inputTaskRef.current.value);
   }
 
   return (
@@ -44,6 +38,7 @@ export function FormAddTask({addTask}: {addTask: React.Dispatch<React.SetStateAc
           <Input
             inputRef={inputTaskRef}
             onChange={handleInput}
+            required={true}
           />
           <Button
             type="submit"

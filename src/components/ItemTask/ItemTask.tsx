@@ -1,5 +1,5 @@
-import { Button } from 'Shared/Button/Button';
-import { Task } from 'Src/types/Task';
+import { Button } from 'shared/Button/Button';
+import { Task } from 'types/Task';
 import styles from './ItemTask.module.css';
 
 export function ItemTask({task, removeTask}: {task: Task, removeTask: (id: string)=>void}) {

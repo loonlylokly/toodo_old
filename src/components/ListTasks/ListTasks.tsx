@@ -1,16 +1,13 @@
-import { ItemTask } from 'Components/ItemTask/ItemTask';
-import { Task } from 'Src/types/Task';
+import { ItemTask } from 'components/ItemTask/ItemTask';
+import { Task } from 'src/types/Task';
 import styles from './ListTasks.module.css';
 
-export function ListTasks({tasks, setTasks}: {tasks: Task[], setTasks: React.Dispatch<React.SetStateAction<Task[]>>}) {
-  const removeTask = (id: string) => {
-    setTasks(() => 
-      tasks.filter(task =>
-        task.id !== id
-      )
-    )
-  }
+type Props = {
+  tasks: Task[],
+  removeTask: (id: string) => void,
+}
 
+export function ListTasks({tasks, removeTask}: Props) {
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list_task}>
