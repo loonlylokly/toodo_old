@@ -7,10 +7,10 @@ import styles from './todoList.module.css';
 
 export function TodoList() {
   const { getStore, addTask, removeTask } = taskService.getInstance();
-  const [tasks1, setTasks1] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   function updateTasks() {
-    setTasks1(() => [...getStore().tasks]);
+    setTasks(() => [...getStore().tasks]);
   }
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function TodoList() {
   return (
     <section className={styles.todo_list}>
       <FormAddTask addTask={addTask}/>
-      <ListTasks tasks={tasks1} removeTask={removeTask} />
+      <ListTasks tasks={tasks} removeTask={removeTask} />
     </section>
   )
 }
