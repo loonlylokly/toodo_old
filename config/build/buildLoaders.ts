@@ -30,7 +30,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         loader: "css-loader",
         options: {
           modules: {
-            localIdentName: isDev ? '[path][name]__[local]':'[hash:base64:8]',
+            localIdentName: isDev ? '[name]_[contenthash]':'[path][name]__[local]',
           }
         },
       },
@@ -43,9 +43,9 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     use: [{ 
       loader: 'ts-loader',
       options: {
-        getCustomTransformers: () => ({
-          before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-        }),
+        // getCustomTransformers: () => ({
+        //   before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+        // }),
       }
     }],
   };

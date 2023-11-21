@@ -1,0 +1,12 @@
+.wrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 40%;
+  display: grid;
+  grid-template-columns: 1fr 4rem;
+  column-gap: 0.5rem;
+}
