@@ -1,11 +1,18 @@
 import { ItemTask } from 'components/itemTask/itemTask';
 import styles from './listTasks.module.css';
-import { useAppContext } from 'shared/providers/ServiceProvider';
-
-let test = 1;
+import { useEffect, useState } from 'react';
+import { store } from 'shared/utils/taskService'
+// import { useAppContext } from 'shared/providers/ServiceProvider';
 
 export function ListTasks() {
-  const {tasks} = useAppContext();
+  // const {tasks} = useAppContext();
+  const { tasks } = store;
+  const [_, forceUpdate] = useState(null);
+
+  useEffect(() => {
+    window.addEventListener('updateTasks', ()=> forceUpdate({}));
+    return () => window.addEventListener('updateTasks', ()=> forceUpdate({}));
+  },[])
 
   return (
     <div className={styles.wrapper}>

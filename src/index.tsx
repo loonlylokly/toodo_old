@@ -11,7 +11,7 @@ if (!root) {
 const container = createRoot(root)
 
 container.render(
-    <ServiceProvider>
+    // <ServiceProvider>
       <App />
-    </ServiceProvider>
+    // </ServiceProvider>
 );

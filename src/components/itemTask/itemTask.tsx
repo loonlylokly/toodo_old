@@ -1,9 +1,11 @@
 import { Button } from 'shared/button/button';
 import styles from './itemTask.module.css';
-import { useAppContext } from 'shared/providers/ServiceProvider';
+import { removeTask } from 'utils/taskService';
+// import { useAppContext } from 'shared/providers/ServiceProvider';
 
 export function ItemTask({task}: {task: any}) {
-  const { removeTask } = useAppContext();
+  // const { removeTask } = useAppContext();
+  // const { removeTask } = store;
 
   return (
     <li className={styles.task}>
