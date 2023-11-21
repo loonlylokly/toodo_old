@@ -1,11 +1,15 @@
 import { Button } from 'shared/button/button';
+import { Task } from 'types/task';
 import styles from './itemTask.module.css';
-import { removeTask } from 'utils/taskService';
 // import { useAppContext } from 'shared/providers/ServiceProvider';
 
-export function ItemTask({task}: {task: any}) {
+type Props = {
+  task: Task,
+  removeTask: (id: string)=>void,
+}
+
+export function ItemTask({task, removeTask}: Props) {
   // const { removeTask } = useAppContext();
-  // const { removeTask } = store;
 
   return (
     <li className={styles.task}>

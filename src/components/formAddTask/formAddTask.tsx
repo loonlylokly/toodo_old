@@ -1,20 +1,21 @@
 import { useRef, useState } from "react";
 import { Button } from "shared/button/button";
 import { Input } from "shared/input/input";
-import styles from './formAddTask.module.css'
-import { addTask } from "utils/taskService";
+import styles from './formAddTask.module.css';
 // import { useAppContext } from "shared/providers/ServiceProvider";
 
-export function FormAddTask() {
+type Props = {
+  addTask: (textTask: string)=>void,
+}
+
+export function FormAddTask({addTask}: Props) {
   const inputTaskRef = useRef<HTMLInputElement>(null);
   const [disabled, setDisable] = useState<boolean>(true);
   // const {addTask} = useAppContext();
-  // const { addTask } = store;
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     addTask(inputTaskRef.current.value);
-    // addTask(inputTaskRef.current.value);
     inputTaskRef.current.value='';
   }
 
