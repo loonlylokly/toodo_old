@@ -1,5 +1,7 @@
+import { Task } from "widgets/task/task";
+
 export function TaskPage() {
   return (
-    <div>taskPage</div>
+    <Task />
   )
 }

@@ -7,12 +7,12 @@ import styles from './todoList.module.css';
 
 export function TodoList() {
   const { getStore, addTask, removeTask } = taskService.getInstance();
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(getStore().tasks ?? []);
 
   function updateTasks() {
     setTasks(() => [...getStore().tasks]);
   }
-
+  
   useEffect(() => {
     window.addEventListener(EventList.updateTasks, updateTasks);
     return () => window.removeEventListener(EventList.updateTasks, updateTasks);

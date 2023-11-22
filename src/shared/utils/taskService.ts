@@ -14,6 +14,10 @@ export const taskService = (function() {
     };
     
     const getStore = () => store;
+
+    const getTask = (id: string) => {
+      return store.tasks.find((item) => item.id === id);
+    }
   
     const addTask = (textTask: string) => {
       const dateTask = new Date(Date.now());
@@ -32,7 +36,7 @@ export const taskService = (function() {
       window.dispatchEvent(new CustomEvent(EventList.updateTasks));
     };
   
-    return { getStore, addTask, removeTask };
+    return { getStore, addTask, removeTask, getTask };
   }
 
   return {

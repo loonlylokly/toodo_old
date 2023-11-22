@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { Button } from "shared/button/button";
-import { Input } from "shared/input/input";
+import { Button } from "shared/ui/button/button";
+import { Input } from "shared/ui/input/input";
 import styles from './formAddTask.module.css';
 // import { useAppContext } from "shared/providers/ServiceProvider";
 
