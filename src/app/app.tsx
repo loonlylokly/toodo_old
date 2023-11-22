@@ -7,8 +7,8 @@ import { NotFoundPage } from 'pages/notFoundPage/NotFoundPage';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route path="/" element={<MainPage />} />
-      <Route path="task" element={<TaskPage />} />
+      <Route index element={<MainPage />} />
+      <Route path="tasks/:id" element={<TaskPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
