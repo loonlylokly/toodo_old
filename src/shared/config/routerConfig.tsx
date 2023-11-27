@@ -1,6 +1,4 @@
 import { RouteProps } from 'react-router-dom';
-import MainPage from 'pages/mainPage/mainPage';
-import TaskPage from 'pages/taskPage/taskPage';
 import { MainPageAsync } from 'pages/mainPage/mainPageAsync';
 import { TaskPageAsync } from 'pages/taskPage/taskPageAsync';
 import { NotFoundPage } from 'pages/notFoundPage/NotFoundPage';
@@ -21,11 +19,11 @@ export const routerConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.MAIN]: {
     path: RoutePath.main,
     index: true,
-    element: <MainPage />,
+    element: <MainPageAsync />,
   },
   [AppRoutes.TASKS]: {
     path: RoutePath.tasks,
-    element: <TaskPage />,
+    element: <TaskPageAsync />,
   },
   [AppRoutes.ERROR]: {
     path: RoutePath.tasks,
