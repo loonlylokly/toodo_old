@@ -1,6 +1,7 @@
+import { Suspense } from "react";
 import { Task } from "widgets/task/task";
 
-export function TaskPage() {
+export default function TaskPage() {
   return (
     <Task />
   )

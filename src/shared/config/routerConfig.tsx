@@ -1,6 +1,8 @@
 import { RouteProps } from 'react-router-dom';
-import { MainPage } from 'pages/mainPage/mainPage';
-import { TaskPage } from 'pages/taskPage/taskPage';
+import MainPage from 'pages/mainPage/mainPage';
+import TaskPage from 'pages/taskPage/taskPage';
+import { MainPageAsync } from 'pages/mainPage/mainPageAsync';
+import { TaskPageAsync } from 'pages/taskPage/taskPageAsync';
 import { NotFoundPage } from 'pages/notFoundPage/NotFoundPage';
 
 export enum AppRoutes {
