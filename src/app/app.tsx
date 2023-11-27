@@ -1,15 +1,20 @@
-import { createRoutesFromElements, RouterProvider, Routes, Route, createBrowserRouter } from 'react-router-dom';
-import { MainPage } from "pages/mainPage/mainPage";
 import { MainLayout } from 'pages/layouts/mainLayout/mainLayout';
-import { TaskPage } from 'pages/taskPage/taskPage';
-import { NotFoundPage } from 'pages/notFoundPage/NotFoundPage';
+import { createRoutesFromElements,
+          RouterProvider,
+          createBrowserRouter,
+          Route} from 'react-router-dom';
+import { routerConfig } from 'shared/config/routerConfig';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route index element={<MainPage />} />
-      <Route path="tasks/:id" element={<TaskPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      {Object.values(routerConfig).map(({element, path}) => (
+        <Route 
+        key={path}
+        path={path}
+        element={element}
+        />
+        ))}
     </Route>
   )
 );
@@ -19,4 +24,3 @@ export function App() {
     <RouterProvider router={router} />
   )
 }
-

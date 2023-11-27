@@ -1,4 +1,4 @@
-import { OptionsDate } from 'shared/config';
+import { OptionsDate } from 'shared/config/dateConfig';
 import { Task } from 'types/task';
 
 export enum EventList {
