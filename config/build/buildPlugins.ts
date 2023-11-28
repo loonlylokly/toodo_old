@@ -1,9 +1,7 @@
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BuildOptions } from "./types/types";
-import webpack from "webpack";
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
   const isDev = options.mode === 'development';
@@ -16,8 +14,6 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
       filename: 'css/[name]-[contenthash].css',
       chunkFilename: 'css/[name]-[contenthash].css',
     }),
-    // isDev && new webpack.HotModuleReplacementPlugin(),
-    // isDev && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean);
 
   return plugins;

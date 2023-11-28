@@ -13,7 +13,7 @@ export const taskService = (function() {
       tasks: [],
     };
     
-    const getStore = () => store;
+    const getStore = store;
 
     const getTask = (id: string) => {
       return store.tasks.find((item) => item.id === id);
