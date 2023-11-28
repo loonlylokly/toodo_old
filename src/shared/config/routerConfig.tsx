@@ -7,7 +7,7 @@ export enum AppRoutes {
   MAIN = 'main',
   TASKS = 'tasks',
   ERROR = '*',
-};
+}
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
@@ -28,5 +28,5 @@ export const routerConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.ERROR]: {
     path: RoutePath.tasks,
     element: <NotFoundPage />,
-  }
+  },
 };

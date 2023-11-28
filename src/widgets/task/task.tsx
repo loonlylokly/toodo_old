@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom"
-import { taskService } from "utils/taskService";
-import styles from "./task.module.css";
+import { useParams } from 'react-router-dom';
+import { taskService } from 'utils/taskService';
+import styles from './task.module.css';
 
 export function Task() {
   const { id } = useParams();
@@ -14,5 +14,5 @@ export function Task() {
         <p>{task.date}</p>
       </div>
     </section>
-  )
+  );
 }

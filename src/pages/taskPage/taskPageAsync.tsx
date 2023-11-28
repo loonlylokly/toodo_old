@@ -1,5 +1,3 @@
 import { lazy } from 'react';
 
-export const TaskPageAsync = lazy(() =>
-    import('./taskPage')
-);
+export const TaskPageAsync = lazy(() => import('./taskPage'));

@@ -1,7 +1,5 @@
-import { Task } from "widgets/task/task";
+import { Task } from 'widgets/task/task';
 
 export default function TaskPage() {
-  return (
-    <Task />
-  )
+  return <Task />;
 }

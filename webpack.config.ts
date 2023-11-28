@@ -1,10 +1,11 @@
-import path from 'path';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import webpack from 'webpack';
+import path from 'path';
 import { buildWebpack } from './config/build/buildWebpack';
 
 interface EnvVariable {
   port?: number;
-  mode?: 'development'|'production';
+  mode?: 'development' | 'production';
 }
 
 export default (env: EnvVariable) => {
@@ -14,11 +15,11 @@ export default (env: EnvVariable) => {
     src: path.resolve(__dirname, 'src'),
     favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
     output: path.resolve(__dirname, 'build'),
-  }
+  };
   const config: webpack.Configuration = buildWebpack({
     port: env.port ?? 3000,
     mode: env.mode ?? 'development',
-    paths: paths
+    paths,
   });
   return config;
-}
+};

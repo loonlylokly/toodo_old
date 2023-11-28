@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import webpack from 'webpack';
 
 import { buildDevServer } from './buildDevServer';
@@ -7,7 +8,7 @@ import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/types';
 
 export function buildWebpack(options: BuildOptions): webpack.Configuration {
-  const {mode, paths} = options;
+  const { mode, paths } = options;
   const isDev = mode === 'development';
   return {
     mode: options.mode,
@@ -22,6 +23,6 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
       filename: '[name]-[contenthash].js',
       clean: true,
     },
-    devServer: isDev ? buildDevServer(options): undefined,
+    devServer: isDev ? buildDevServer(options) : undefined,
   };
 }

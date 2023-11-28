@@ -5,5 +5,5 @@ export function Header() {
     <header>
       <h2 className={styles.title}>My Tasks</h2>
     </header>
-  )
+  );
 }

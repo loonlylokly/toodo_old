@@ -8,7 +8,10 @@
     "dev": "webpack serve --env mode=development",
     "build-p": "webpack --env mode=production",
     "build-d": "webpack --env mode=development",
-    "eslint": "",
+    "eslint": "npx eslint \"**/*{ts,tsx}\"",
+    "eslint-fix": "npx eslint \"**/*{ts,tsx}\" --fix",
+    "stylelint": "npx stylelint \"**/*.css\"",
+    "stylelint-fix": "npx stylelint \"**/*.css\" --fix",
     "test": ""
   },
   "author": "lonlylokly",
@@ -19,15 +22,26 @@
     "@types/node": "20.9.0",
     "@types/react": "18.2.37",
     "@types/react-dom": "18.2.15",
-    "@types/react-router-dom": "^5.3.3",
+    "@types/react-router-dom": "5.3.3",
     "@types/webpack": "5.28.5",
     "@types/webpack-dev-server": "4.7.2",
+    "@typescript-eslint/eslint-plugin": "6.13.1",
     "css-loader": "6.8.1",
+    "eslint": "8.54.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-jsx-a11y": "6.8.0",
+    "eslint-plugin-prettier": "5.0.1",
+    "eslint-plugin-react": "7.33.2",
+    "eslint-plugin-react-hooks": "4.6.0",
     "html-webpack-plugin": "5.5.3",
     "mini-css-extract-plugin": "2.7.6",
     "react-refresh": "0.14.0",
     "react-refresh-typescript": "2.0.9",
     "style-loader": "3.3.3",
+    "stylelint": "15.11.0",
+    "stylelint-config-standard": "34.0.0",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.1",
     "type-fest": "4.7.1",
@@ -38,6 +52,6 @@
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "^6.19.0"
+    "react-router-dom": "6.19.0"
   }
 }

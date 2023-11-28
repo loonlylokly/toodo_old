@@ -1,10 +1,10 @@
-import { Configuration } from "webpack";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { BuildOptions } from "./types/types";
+import { BuildOptions } from './types/types';
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
-  const isDev = options.mode === 'development';
   const plugins: Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       template: options.paths.html,

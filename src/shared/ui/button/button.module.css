@@ -7,7 +7,7 @@
 
 .primary:disabled {
   color: var(--color-back-primary);
-  background-color: rgb(161, 161, 161);
+  background-color: rgb(161 161 161);
   border: none;
   border-radius: 1.2rem;
 }
