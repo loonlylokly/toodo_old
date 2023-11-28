@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
+import {BrowserRouter} from "react-router-dom";
 import { App } from './app/app';
-import { ServiceProvider } from 'shared/providers/ServiceProvider';
 
 const root = document.getElementById('root');
 
@@ -11,7 +11,7 @@ if (!root) {
 const container = createRoot(root)
 
 container.render(
-    // <ServiceProvider>
-      <App />
-    // </ServiceProvider>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
 );

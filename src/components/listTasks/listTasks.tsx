@@ -1,7 +1,6 @@
 import { ItemTask } from 'components/itemTask/itemTask';
 import { Task } from 'types/task';
 import styles from './listTasks.module.css';
-// import { useAppContext } from 'shared/providers/ServiceProvider';
 
 type Props = {
   tasks: Task[],
@@ -9,7 +8,6 @@ type Props = {
 };
 
 export function ListTasks({tasks, removeTask}: Props) {
-  // const {tasks} = useAppContext();
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list_task}>

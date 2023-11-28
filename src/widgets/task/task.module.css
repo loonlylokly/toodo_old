@@ -1,0 +1,14 @@
+.task {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 70%;
+  min-width: 30rem;
+  max-width: 70rem;
+}
+
+.text {
+  word-break: break-all;
+}

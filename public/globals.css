@@ -55,3 +55,45 @@ p {
 section {
   padding-inline: 1rem;
 }
+
+::view-transition-old(root) {
+  animation: 1s transition-out 0s ease;
+}
+
+::view-transition-new(root) {
+  animation: 1s transition-in 0s ease;
+}
+
+@keyframes transition-out {
+  from {
+    opacity: 1;
+    translate: 0;
+    rotate: 0;
+  }
+  to {
+    opacity: 0;
+    translate: -3rem -5rem;
+    rotate: -10deg;
+  }
+}
+
+@keyframes transition-in {
+  from {
+    opacity: 0;
+    translate: 3rem 5rem;
+    rotate: -10deg;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+    rotate: 0;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

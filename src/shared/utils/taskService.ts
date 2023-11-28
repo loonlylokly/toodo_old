@@ -1,4 +1,4 @@
-import { OptionsDate } from 'shared/config';
+import { OptionsDate } from 'shared/config/dateConfig';
 import { Task } from 'types/task';
 
 export enum EventList {
@@ -13,7 +13,11 @@ export const taskService = (function() {
       tasks: [],
     };
     
-    const getStore = () => store;
+    const getStore = store;
+
+    const getTask = (id: string) => {
+      return store.tasks.find((item) => item.id === id);
+    }
   
     const addTask = (textTask: string) => {
       const dateTask = new Date(Date.now());
@@ -32,7 +36,7 @@ export const taskService = (function() {
       window.dispatchEvent(new CustomEvent(EventList.updateTasks));
     };
   
-    return { getStore, addTask, removeTask };
+    return { getStore, addTask, removeTask, getTask };
   }
 
   return {

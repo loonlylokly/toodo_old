@@ -5,7 +5,9 @@
 }
 
 .form {
-  width: 40%;
+  width: 70%;
+  min-width: 30rem;
+  max-width: 70rem;
   display: grid;
   grid-template-columns: 1fr 4rem;
   column-gap: 0.5rem;

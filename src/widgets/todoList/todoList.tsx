@@ -9,14 +9,14 @@ export function TodoList() {
   const { getStore, addTask, removeTask } = taskService.getInstance();
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  function updateTasks() {
-    setTasks(() => [...getStore().tasks]);
-  }
-
   useEffect(() => {
+    function updateTasks() {
+      setTasks(() => [...getStore.tasks]);
+    }
+    updateTasks()
     window.addEventListener(EventList.updateTasks, updateTasks);
     return () => window.removeEventListener(EventList.updateTasks, updateTasks);
-  },[])
+  },[getStore])
 
   return (
     <section className={styles.todo_list}>

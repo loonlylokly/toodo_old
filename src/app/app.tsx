@@ -1,11 +1,7 @@
-import React from "react";
-import { MainPage } from "pages/mainPage/mainPage";
-
-const ServiceContext = React.createContext(null);
+import { AppRouter } from 'shared/appRouter/appRouter';
 
 export function App() {  
   return (
-    <MainPage />
+    <AppRouter />
   )
 }
-
