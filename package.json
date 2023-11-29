@@ -12,7 +12,8 @@
     "eslint-fix": "npx eslint \"**/*{ts,tsx}\" --fix",
     "stylelint": "npx stylelint \"**/*.css\"",
     "stylelint-fix": "npx stylelint \"**/*.css\" --fix",
-    "test": ""
+    "test": "",
+    "prepare": "husky install"
   },
   "author": "lonlylokly",
   "license": "ISC",
@@ -36,6 +37,7 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "html-webpack-plugin": "5.5.3",
+    "husky": "^8.0.3",
     "mini-css-extract-plugin": "2.7.6",
     "react-refresh": "0.14.0",
     "react-refresh-typescript": "2.0.9",
