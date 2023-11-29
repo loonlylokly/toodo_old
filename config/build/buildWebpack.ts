@@ -11,7 +11,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
   const { mode, paths } = options;
   const isDev = mode === 'development';
   return {
-    mode: options.mode,
+    mode: options.mode === 'analyzer' ? 'production' : options.mode,
     entry: paths.entry,
     module: {
       rules: buildLoaders(options),

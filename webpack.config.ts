@@ -2,10 +2,11 @@
 import webpack from 'webpack';
 import path from 'path';
 import { buildWebpack } from './config/build/buildWebpack';
+import { BuildMode } from './config/build/types/types';
 
 interface EnvVariable {
   port?: number;
-  mode?: 'development' | 'production';
+  mode?: BuildMode;
 }
 
 export default (env: EnvVariable) => {
