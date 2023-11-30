@@ -1,6 +1,6 @@
 import { AppRouter } from 'shared/appRouter/appRouter';
 
-export function App() {  
+export function App() {
   return (
     <AppRouter />
   )

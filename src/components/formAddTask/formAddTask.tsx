@@ -15,6 +15,7 @@ export function FormAddTask({addTask}: Props) {
     event.preventDefault();
     addTask(inputTaskRef.current.value);
     inputTaskRef.current.value='';
+    setDisable(!inputTaskRef.current.value);
   }
 
   const handleInput = () => {
