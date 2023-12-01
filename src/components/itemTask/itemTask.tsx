@@ -16,7 +16,13 @@ export function ItemTask({task, removeTask}: Props) {
         <p className={styles.text}>{task.text}</p>
         <span className={styles.text}>{task.date}</span>
       </Link>
-      <Button styleClass={styles.button} onClick={()=>removeTask(task.id)} title="Remove Task">X</Button>
+      <Button
+        styleClass={styles.button}
+        onClick={()=>removeTask(task.id)}
+        title="Remove Task"
+      >
+        X
+      </Button>
     </li>
   )
 }

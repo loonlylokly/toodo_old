@@ -1,28 +1,25 @@
-import { MutableRefObject } from 'react';
+import { FC } from 'react';
+import { InputHTMLAttributes, MutableRefObject } from 'react';
 import styles from './input.module.css';
 
-type props = {
-  type?: 'text'|'checkbox',
-  placeholder?: string,
-  required?: boolean,
+type Props = {
   styleClass?: string,
-  onChange?: ()=>void,
-  inputRef?: MutableRefObject<HTMLInputElement>|undefined,
-};
+  inputRef?: MutableRefObject<HTMLInputElement> | undefined,
+} & InputHTMLAttributes<HTMLInputElement>
 
-export function Input({
-  type='text',
+export const Input: FC<Props> = ({
   styleClass='',
-  required=false,
-  onChange=()=>{},
   inputRef,
-}: props) {
+  children,
+  ...rest
+}) => {
   return (
-    <input
+    <input 
       className={`${styles.input} ${styleClass}`}
-      type={type} ref={inputRef}
-      required={required}
-      onChange={onChange}
-    />
-  )
-}
+      ref={inputRef}
+      {...rest}
+    >
+      {children}
+    </input>
+  );
+};

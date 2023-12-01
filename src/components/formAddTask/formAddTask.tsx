@@ -32,7 +32,6 @@ export function FormAddTask({addTask}: Props) {
           />
           <Button
             type="submit"
-            height="40px"
             disabled={disabled}
           >
             Add

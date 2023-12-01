@@ -5,10 +5,23 @@
 
 .wrapper {
   width: 70%;
-  min-width: 30rem;
+  min-width: 25rem;
   max-width: 70rem;
 }
 
 .text {
   word-break: break-all;
+}
+
+.btn_edit {
+  height: fit-content;
+  width: fit-content;
+  background: none;
+  border: none;
+}
+
+.btn_cancel {
+  color: var(--color-text-primary);
+  background: none;
+  border: 1px solid var(--color-text-primary);
 }

@@ -1,38 +1,23 @@
+import { ButtonHTMLAttributes, FC } from 'react';
 import styles from './button.module.css';
 
-type props = {
-  type?: 'submit'|'reset'|'button',
-  width?: string,
-  height?: string,
-  title?: string,
+type Props = {
   styleType?: 'primary'|'secondary',
   styleClass?: string,
-  disabled?: boolean,
-  onClick?: () => void
-  children?: string|React.ReactHTMLElement<HTMLElement>,
-};
+} &  ButtonHTMLAttributes<HTMLButtonElement>
 
-export function Button({
-  type='button',
-  width='',
-  height='',
-  title='',
+export const Button: FC<Props> = ({
   styleType='primary',
   styleClass='',
-  disabled=false,
-  onClick=()=>{},
-  children='Кнопка',
-}: props) {
+  children,
+  ...props
+}) => {
   return (
     <button
       className={`${styleClass} ${styles[styleType]}`}
-      type={type}
-      title={title}
-      style={{width: width, height: height}}
-      disabled={disabled}
-      onClick={onClick}
-      >
+      {...props}
+    >
       {children}
     </button>
-  )
+  );
 }
