@@ -1,16 +1,26 @@
 import { useParams } from "react-router-dom"
-import { taskService } from "utils/taskService";
+import { storeService } from "utils/storeService";
 import { Button } from "shared/ui/button/button";
 import EditIcon from "public/edit_square_icon.svg";
 import styles from "./task.module.css";
-import { Dialog } from "shared/ui/dialog/dialog";
-import { useState } from "react";
+import { FormEditTask } from "components/formEditTask/formEditTask";
+import { useEffect, useState } from "react";
+import { Task } from "types/task";
+import { EventList } from "utils/storeTypes";
 
 export function Task() {
   const { id } = useParams();
-  const [ isOpen, setIsOpen ] = useState<boolean>(false);
-  const { getTask } = taskService.getInstance();
-  const task = getTask(id);
+  const { executor } = storeService.getInstance();
+  const [task, setTask] = useState<Task>(executor.getTask(id));
+
+  useEffect(() => {
+    function updateTask() {
+      setTask(() => executor.getTask(id));
+    }
+    window.addEventListener(EventList.updateTasks, updateTask);
+    return () => window.removeEventListener(EventList.updateTasks, updateTask);
+  },[])
+
   return (
     <>
       <section className={styles.task}>
@@ -19,18 +29,11 @@ export function Task() {
           <p>{task.id}</p>
           <p>{task.date}</p>
         </div>
-        <Button styleClass={styles.btn_edit} onClick={() => setIsOpen((prev) => !prev)}>
+        <Button styleClass={styles.btn_edit} onClick={() => executor.isOpen(true)}>
           <EditIcon width={32} height={32}/>
         </Button>
       </section>
-      <Dialog
-        id="editTaskDialog"
-        isOpen={isOpen}
-      >
-        <Button styleClass={styles.btn_cancel} onClick={() => setIsOpen((prev) => !prev)}>
-          Cancel
-        </Button>
-      </Dialog>
+      <FormEditTask idTask={id}/>
     </>
   )
 }

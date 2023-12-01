@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Button } from "shared/ui/button/button";
 import { Input } from "shared/ui/input/input";
 import styles from './formAddTask.module.css';
+import { Form } from "shared/ui/form/form";
 
 type Props = {
   addTask: (textTask: string)=>void,
@@ -24,19 +25,19 @@ export function FormAddTask({addTask}: Props) {
 
   return (
     <div className={styles.wrapper}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-          <Input
-            inputRef={inputTaskRef}
-            onChange={handleInput}
-            required={true}
-          />
-          <Button
-            type="submit"
-            disabled={disabled}
-          >
-            Add
-          </Button>
-      </form>
+      <Form className={styles.form} onSubmit={handleSubmit}>
+        <Input
+          inputRef={inputTaskRef}
+          onChange={handleInput}
+          required={true}
+        />
+        <Button
+          type="submit"
+          disabled={disabled}
+        >
+          Add
+        </Button>
+      </Form>
     </div>
   )
 }
