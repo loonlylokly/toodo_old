@@ -1,25 +1,20 @@
-import { FC } from 'react';
-import { InputHTMLAttributes, MutableRefObject } from 'react';
+/* eslint-disable react/function-component-definition */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/require-default-props */
+import { FC, InputHTMLAttributes, MutableRefObject } from 'react';
 import styles from './input.module.css';
 
 type Props = {
-  styleClass?: string,
-  inputRef?: MutableRefObject<HTMLInputElement> | undefined,
-} & InputHTMLAttributes<HTMLInputElement>
+  styleClass?: string;
+  inputRef?: MutableRefObject<HTMLInputElement> | undefined;
+} & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: FC<Props> = ({
-  styleClass='',
-  inputRef,
-  children,
-  ...rest
-}) => {
+export const Input: FC<Props> = ({ styleClass = '', inputRef, ...rest }) => {
   return (
-    <input 
+    <input
       className={`${styles.input} ${styleClass}`}
       ref={inputRef}
       {...rest}
-    >
-      {children}
-    </input>
+    />
   );
 };

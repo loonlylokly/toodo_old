@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+/* eslint-disable react/require-default-props */
+import { useEffect, useRef } from 'react';
 import styles from './dialog.module.css';
 
 type props = {
@@ -6,13 +7,13 @@ type props = {
   styleClass?: string;
   isOpen: boolean;
   children: React.ReactNode;
-}
+};
 
 export function Dialog({
-  id='',
-  styleClass='',
-  isOpen=false,
-  children
+  id = '',
+  styleClass = '',
+  isOpen = false,
+  children,
 }: props) {
   const dialog = useRef<HTMLDialogElement>(null);
 
@@ -22,15 +23,11 @@ export function Dialog({
     } else {
       dialog.current.close();
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
-    <dialog
-      id={id}
-      className={`${styleClass} ${styles.dialog}`}
-      ref={dialog}
-    >
+    <dialog id={id} className={`${styleClass} ${styles.dialog}`} ref={dialog}>
       {children}
     </dialog>
-  )
+  );
 }

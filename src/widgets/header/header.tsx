@@ -5,5 +5,5 @@ export function Header() {
     <header>
       <h2 className={styles.title}>Toodo App</h2>
     </header>
-  )
+  );
 }

@@ -1,10 +1,12 @@
-import { Configuration } from "webpack";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { BuildOptions } from "./types/types";
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { BuildOptions } from './types/types';
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
-  const isDev = options.mode === 'development';
+  const isAnalyze = options.mode === 'analyzer';
   const plugins: Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       template: options.paths.html,
@@ -14,6 +16,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
       filename: 'css/[name]-[contenthash].css',
       chunkFilename: 'css/[name]-[contenthash].css',
     }),
+    isAnalyze && new BundleAnalyzerPlugin(),
   ].filter(Boolean);
 
   return plugins;

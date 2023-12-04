@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
-import { Header } from "widgets/header/header";
+import { Outlet } from 'react-router-dom';
+import { Header } from 'widgets/header/header';
 
 export function MainLayout() {
   return (
@@ -9,5 +9,5 @@ export function MainLayout() {
         <Outlet />
       </main>
     </>
-  )
+  );
 }

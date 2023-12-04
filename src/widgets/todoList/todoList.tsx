@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { FormAddTask } from "components/formAddTask/formAddTask";
+import { useEffect, useState } from 'react';
+import { FormAddTask } from 'components/formAddTask/formAddTask';
 import { ListTasks } from 'components/listTasks/listTasks';
-import { storeService } from "utils/storeService";
-import { EventList } from "utils/storeTypes";
-import { Task } from "types/task";
+import { storeService } from 'utils/storeService';
+import { EventList } from 'utils/storeTypes';
+import { Task } from 'types/task';
 import styles from './todoList.module.css';
 
 export function TodoList() {
@@ -14,15 +14,15 @@ export function TodoList() {
     function updateTasks() {
       setTasks(() => [...getStore.tasks]);
     }
-    updateTasks()
+    updateTasks();
     window.addEventListener(EventList.updateTasks, updateTasks);
     return () => window.removeEventListener(EventList.updateTasks, updateTasks);
-  },[getStore])
+  }, [getStore]);
 
   return (
     <section className={styles.todo_list}>
-      <FormAddTask addTask={executor.addTask}/>
+      <FormAddTask addTask={executor.addTask} />
       <ListTasks tasks={tasks} removeTask={executor.removeTask} />
     </section>
-  )
+  );
 }

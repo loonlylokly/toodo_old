@@ -1,15 +1,14 @@
-import { StoreType } from "./storeTypes";
-import { taskSlice } from "./slices/tasksSlice"
+/* eslint-disable func-names */
+import { StoreType } from './storeTypes';
+import { taskSlice } from './slices/tasksSlice';
 
-export const storeService = (function() {
-  let instance: ReturnType<typeof createService>;
-
-  function createService() {  
+export const storeService = (function () {
+  function createService() {
     const store: StoreType = {
       tasks: [],
       isOpen: false,
     };
-    
+
     const getStore = store;
 
     const executor = {
@@ -18,13 +17,15 @@ export const storeService = (function() {
       editTask: taskSlice(store).editTask,
       removeTask: taskSlice(store).removeTask,
       isOpen: taskSlice(store).toggleDialogEditTask,
-    }
+    };
 
     return { getStore, executor };
   }
 
+  let instance: ReturnType<typeof createService>;
+
   return {
-    getInstance: function () {
+    getInstance() {
       if (!instance) {
         instance = createService();
       }

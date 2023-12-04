@@ -1,12 +1,13 @@
-import { useParams } from "react-router-dom"
-import { storeService } from "utils/storeService";
-import { Button } from "shared/ui/button/button";
-import EditIcon from "public/edit_square_icon.svg";
-import styles from "./task.module.css";
-import { FormEditTask } from "components/formEditTask/formEditTask";
-import { useEffect, useState } from "react";
-import { Task } from "types/task";
-import { EventList } from "utils/storeTypes";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { storeService } from 'utils/storeService';
+import { Button } from 'shared/ui/button/button';
+import { FormEditTask } from 'components/formEditTask/formEditTask';
+import { Task } from 'types/task';
+import { EventList } from 'utils/storeTypes';
+// eslint-disable-next-line import/extensions
+import EditIcon from 'public/edit_square_icon.svg';
+import styles from './task.module.css';
 
 export function Task() {
   const { id } = useParams();
@@ -19,7 +20,7 @@ export function Task() {
     }
     window.addEventListener(EventList.updateTasks, updateTask);
     return () => window.removeEventListener(EventList.updateTasks, updateTask);
-  },[])
+  }, [id, executor]);
 
   return (
     <>
@@ -29,11 +30,14 @@ export function Task() {
           <p>{task.id}</p>
           <p>{task.date}</p>
         </div>
-        <Button styleClass={styles.btn_edit} onClick={() => executor.isOpen(true)}>
-          <EditIcon width={32} height={32}/>
+        <Button
+          styleClass={styles.btn_edit}
+          onClick={() => executor.isOpen(true)}
+        >
+          <EditIcon width={32} height={32} />
         </Button>
       </section>
-      <FormEditTask idTask={id}/>
+      <FormEditTask idTask={id} />
     </>
-  )
+  );
 }

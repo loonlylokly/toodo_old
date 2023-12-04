@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
 export function TodolistLayout() {
   return (
@@ -6,5 +6,5 @@ export function TodolistLayout() {
       <h1>To do List</h1>
       <Outlet />
     </>
-  )
+  );
 }
