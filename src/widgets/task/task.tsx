@@ -12,7 +12,7 @@ import styles from './task.module.css';
 export function Task() {
   const { id } = useParams();
   const { executor } = storeService.getInstance();
-  const [task, setTask] = useState<Task>(executor.getTask(id));
+  const [task, setTask] = useState<Task>(() => executor.getTask(id));
 
   useEffect(() => {
     function updateTask() {
@@ -21,6 +21,10 @@ export function Task() {
     window.addEventListener(EventList.updateTasks, updateTask);
     return () => window.removeEventListener(EventList.updateTasks, updateTask);
   }, [id, executor]);
+
+  if (!executor.getTask(id)) {
+    return <h1>There is no such task</h1>;
+  }
 
   return (
     <>

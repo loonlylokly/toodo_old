@@ -40,7 +40,7 @@ export function FormEditTask({ idTask }: { idTask: string }) {
           Save
         </Button>
         <Button styleType="secondary" onClick={() => executor.isOpen(false)}>
-          Cansel
+          Cancel
         </Button>
       </Form>
     </Dialog>
