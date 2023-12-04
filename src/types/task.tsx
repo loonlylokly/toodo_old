@@ -1,5 +1,5 @@
 export type Task = {
-  id: string,
-  text: string,
-  date: string,
-}
+  id: string;
+  text: string;
+  date: string;
+};
