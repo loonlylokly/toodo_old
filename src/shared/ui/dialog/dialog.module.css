@@ -1,5 +1,5 @@
 .dialog::backdrop {
-  background: hsla(243, 45%, 8%, 0.4);
+  background: hsl(243deg 45% 8% / 40%);
   backdrop-filter: blur(5px);
 }
 
