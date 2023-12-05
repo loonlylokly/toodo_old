@@ -1,0 +1,9 @@
+.dialog::backdrop {
+  background: hsl(243deg 45% 8% / 40%);
+  backdrop-filter: blur(5px);
+}
+
+.dialog {
+  margin: auto;
+  padding: 1.4rem;
+}

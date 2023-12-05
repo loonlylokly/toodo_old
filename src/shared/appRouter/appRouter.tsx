@@ -1,24 +1,46 @@
-import { MainLayout } from 'pages/layouts/mainLayout/mainLayout';
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { routerConfig } from 'shared/config/routerConfig';
+import { AppRoutes, MyRouteProps } from 'types/route';
 
-export function AppRouter() {
+function passThroughRoutes(
+  routes: Record<AppRoutes, MyRouteProps>
+): JSX.Element {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        {Object.values(routerConfig).map(({ element, path }) => (
+    <>
+      {Object.values(routes).map((route) => {
+        if (route.type === 'layout') {
+          return (
+            <Route
+              key={route.layoutPath}
+              path={route.layoutPath}
+              element={route.layout}
+            >
+              {passThroughRoutes(route.routes)}
+            </Route>
+          );
+        }
+        return (
           <Route
-            key={path}
-            path={path}
+            key={route.path}
+            path={route.path}
+            index={route.index}
             element={
-              <Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
+              route.suspense ? (
+                <Suspense fallback={route.suspense}>{route.element}</Suspense>
+              ) : (
+                route.element
+              )
             }
           />
-        ))}
-      </Route>
-    </Routes>
+        );
+      })}
+    </>
   );
+}
+
+export function AppRouter() {
+  return <Routes>{passThroughRoutes(routerConfig)}</Routes>;
 }
 
 export default AppRouter;

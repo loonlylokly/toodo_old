@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { FormAddTask } from 'components/formAddTask/formAddTask';
 import { ListTasks } from 'components/listTasks/listTasks';
-import { EventList, taskService } from 'utils/taskService';
+import { storeService } from 'utils/storeService';
+import { EventList } from 'utils/storeTypes';
 import { Task } from 'types/task';
 import styles from './todoList.module.css';
 
 export function TodoList() {
-  const { getStore, addTask, removeTask } = taskService.getInstance();
+  const { getStore, executor } = storeService.getInstance();
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -20,8 +21,8 @@ export function TodoList() {
 
   return (
     <section className={styles.todo_list}>
-      <FormAddTask addTask={addTask} />
-      <ListTasks tasks={tasks} removeTask={removeTask} />
+      <FormAddTask addTask={executor.addTask} />
+      <ListTasks tasks={tasks} removeTask={executor.removeTask} />
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Button } from 'shared/ui/button/button';
 import { Input } from 'shared/ui/input/input';
+import { Form } from 'shared/ui/form/form';
 import styles from './formAddTask.module.css';
 
 type Props = {
@@ -15,6 +16,7 @@ export function FormAddTask({ addTask }: Props) {
     event.preventDefault();
     addTask(inputTaskRef.current.value);
     inputTaskRef.current.value = '';
+    setDisable(!inputTaskRef.current.value);
   };
 
   const handleInput = () => {
@@ -23,12 +25,12 @@ export function FormAddTask({ addTask }: Props) {
 
   return (
     <div className={styles.wrapper}>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <Form className={styles.form} onSubmit={handleSubmit}>
         <Input inputRef={inputTaskRef} onChange={handleInput} required />
-        <Button type="submit" height="40px" disabled={disabled}>
+        <Button type="submit" disabled={disabled}>
           Add
         </Button>
-      </form>
+      </Form>
     </div>
   );
 }

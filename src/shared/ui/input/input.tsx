@@ -1,29 +1,20 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
-import { MutableRefObject } from 'react';
+import { FC, InputHTMLAttributes, MutableRefObject } from 'react';
 import styles from './input.module.css';
 
-type props = {
-  type?: 'text' | 'checkbox';
-  required?: boolean;
+type Props = {
   styleClass?: string;
-  onChange?: () => void;
   inputRef?: MutableRefObject<HTMLInputElement> | undefined;
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
-export function Input({
-  type = 'text',
-  styleClass = '',
-  required = false,
-  onChange = () => {},
-  inputRef,
-}: props) {
+export const Input: FC<Props> = ({ styleClass = '', inputRef, ...rest }) => {
   return (
     <input
       className={`${styles.input} ${styleClass}`}
-      type={type}
       ref={inputRef}
-      required={required}
-      onChange={onChange}
+      {...rest}
     />
   );
-}
+};

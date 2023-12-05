@@ -1,6 +1,6 @@
 .primary {
   color: var(--color-back-primary);
-  background-color: #0b113c;
+  background: #0b113c;
   border: none;
   border-radius: 1.2rem;
 }

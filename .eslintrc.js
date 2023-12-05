@@ -45,6 +45,7 @@ module.exports = {
         ts: 'never',
         jsx: 'never',
         tsx: 'never',
+        svg: 'never',
       },
     ],
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
@@ -52,7 +53,7 @@ module.exports = {
     'react/jsx-indent-props': [2, 2],
     'react/jsx-filename-extension': [
       2,
-      { extensions: ['js', 'jsx', 'ts', 'tsx'] },
+      { extensions: ['js', 'jsx', 'ts', 'tsx', 'svg'] },
     ],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'warn',

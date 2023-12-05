@@ -1,9 +1,9 @@
 import styles from './header.module.css';
 
-export function Header() {
+export function Header({ title }: { title: string }) {
   return (
     <header>
-      <h2 className={styles.title}>My Tasks</h2>
+      <h1 className={styles.title}>{title}</h1>
     </header>
   );
 }

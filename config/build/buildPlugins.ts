@@ -11,6 +11,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     new HtmlWebpackPlugin({
       template: options.paths.html,
       favicon: options.paths.favicon,
+      publicPath: '/',
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[contenthash].css',
