@@ -1,4 +1,3 @@
-import { MainLayout } from 'pages/layouts/mainLayout/mainLayout';
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { routerConfig } from 'shared/config/routerConfig';
@@ -41,13 +40,7 @@ function passThroughRoutes(
 }
 
 export function AppRouter() {
-  return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        {passThroughRoutes(routerConfig)}
-      </Route>
-    </Routes>
-  );
+  return <Routes>{passThroughRoutes(routerConfig)}</Routes>;
 }
 
 export default AppRouter;

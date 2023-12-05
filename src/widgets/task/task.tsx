@@ -22,7 +22,7 @@ export function Task() {
     return () => window.removeEventListener(EventList.updateTasks, updateTask);
   }, [id, executor]);
 
-  if (!executor.getTask(id)) {
+  if (!task) {
     return <h1>There is no such task</h1>;
   }
 

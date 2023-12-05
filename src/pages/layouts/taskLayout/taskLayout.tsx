@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom';
+import { Header } from 'widgets/header/header';
 
 export function TaskLayout() {
   return (
     <>
-      <h2>My Task</h2>
+      <Header title="My Task" />
       <Outlet />
     </>
   );
