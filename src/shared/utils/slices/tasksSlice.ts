@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-import { OptionsDate } from 'shared/config/dateConfig';
 import { EventList, StoreType } from '../storeTypes';
 
 export function taskSlice(state: StoreType) {
@@ -12,7 +11,7 @@ export function taskSlice(state: StoreType) {
     state.tasks.push({
       id: Date.now().toString(),
       text: textTask,
-      date: dateTask.toLocaleDateString('ru-RU', OptionsDate),
+      date: dateTask.toString(),
     });
     window.dispatchEvent(new CustomEvent(EventList.updateTasks));
   };
