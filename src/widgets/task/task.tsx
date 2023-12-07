@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormEditTask } from 'components/formEditTask/formEditTask';
 import { Button } from 'shared/ui/button/button';
@@ -14,6 +14,10 @@ export function Task() {
   const { id } = useParams();
   const { executor } = storeService.getInstance();
   const [task, setTask] = useState<Task>(() => executor.getTask(id));
+  const cachedDate = useMemo(
+    () => new Date(task.date).toLocaleDateString('ru-RU', OptionsDate),
+    [task.date]
+  );
 
   useEffect(() => {
     function updateTask() {
@@ -33,7 +37,7 @@ export function Task() {
         <div className={styles.wrapper}>
           <h1 className={styles.text}>{task.text}</h1>
           <p>{task.id}</p>
-          <p>{new Date(task.date).toLocaleDateString('ru-RU', OptionsDate)}</p>
+          <p>{cachedDate}</p>
         </div>
         <Button
           styleClass={styles.btn_edit}

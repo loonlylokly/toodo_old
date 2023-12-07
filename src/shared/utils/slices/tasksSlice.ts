@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-// import { OptionsDate } from 'shared/config/dateConfig';
 import { EventList, StoreType } from '../storeTypes';
 
 export function taskSlice(state: StoreType) {
