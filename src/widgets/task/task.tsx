@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { storeService } from 'utils/storeService';
-import { Button } from 'shared/ui/button/button';
 import { FormEditTask } from 'components/formEditTask/formEditTask';
-import { Task } from 'types/task';
+import { Button } from 'shared/ui/button/button';
+import { OptionsDate } from 'shared/config/dateConfig';
+import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
+import { Task } from 'types/task';
 // eslint-disable-next-line import/extensions
 import EditIcon from 'public/edit_square_icon.svg';
 import styles from './task.module.css';
@@ -32,7 +33,7 @@ export function Task() {
         <div className={styles.wrapper}>
           <h1 className={styles.text}>{task.text}</h1>
           <p>{task.id}</p>
-          <p>{task.date}</p>
+          <p>{new Date(task.date).toLocaleDateString('ru-RU', OptionsDate)}</p>
         </div>
         <Button
           styleClass={styles.btn_edit}
