@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Button } from 'shared/ui/button/button';
-import { OptionsDate } from 'shared/config/dateConfig';
 import { Task } from 'types/task';
 import { useMemo } from 'react';
+import dayjs from 'dayjs';
 import styles from './itemTask.module.css';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 export function ItemTask({ task, removeTask }: Props) {
   const cachedDate = useMemo(
-    () => new Date(task.date).toLocaleDateString('ru-RU', OptionsDate),
+    () => dayjs(task.date).format('DD-MM-YYYY, HH:mm:ss'),
     [task.date]
   );
 

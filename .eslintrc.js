@@ -56,9 +56,10 @@ module.exports = {
       { extensions: ['js', 'jsx', 'ts', 'tsx', 'svg'] },
     ],
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-props-no-spreading': 'warn',
+    'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'warn',
     'react/button-has-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'jsx-quotes': [1, 'prefer-double'],
   },
 };

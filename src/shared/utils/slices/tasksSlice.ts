@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import dayjs from 'dayjs';
 import { EventList, StoreType } from '../storeTypes';
 
 export function taskSlice(state: StoreType) {
@@ -7,7 +8,7 @@ export function taskSlice(state: StoreType) {
   };
 
   const addTask = (textTask: string) => {
-    const dateTask = new Date(Date.now());
+    const dateTask = dayjs().format();
     state.tasks.push({
       id: Date.now().toString(),
       text: textTask,
