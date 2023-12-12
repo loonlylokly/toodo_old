@@ -1,4 +1,4 @@
-import { Task } from 'types/task';
+import { TTask } from 'types/task';
 
 export enum EventList {
   updateTasks = 'updateTasks',
@@ -6,6 +6,6 @@ export enum EventList {
 }
 
 export type StoreType = {
-  tasks: Task[];
+  tasks: TTask[];
   isOpen: boolean;
 };

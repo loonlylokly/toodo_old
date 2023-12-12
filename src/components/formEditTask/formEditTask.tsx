@@ -6,7 +6,7 @@ import { Form } from 'shared/ui/form/form';
 import { Input } from 'shared/ui/input/input';
 import { useForm } from 'shared/formValid/useForm';
 import { storeService } from 'utils/storeService';
-import { statusEditTask } from 'types/task';
+import { EStatusEditTask } from 'types/task';
 import { validation } from './formEditValidation';
 import styles from './formEditTask.module.css';
 
@@ -30,7 +30,7 @@ export function FormEditTask({ idTask, isOpen }: Props) {
   const { handleSubmit, errors } = useForm({ refs, validation });
   const onSubmit = (
     data: Record<string, string>,
-    formStatus: statusEditTask,
+    formStatus: EStatusEditTask,
     event: React.FormEvent
   ) => {
     if (formStatus === 'error') {

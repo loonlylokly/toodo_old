@@ -1,4 +1,4 @@
-import { statusEditTask } from 'types/task';
+import { EStatusEditTask } from 'types/task';
 import { Validation, ValidationType } from './validation';
 
 type Refs = Record<string, React.MutableRefObject<HTMLInputElement>>;
@@ -10,17 +10,17 @@ type Props = {
 
 export function useForm(props: Props) {
   let errors: Record<string, string> = {};
-  let status: statusEditTask = statusEditTask.success;
+  let status: EStatusEditTask = EStatusEditTask.success;
   const { validate } = Validation(props.validation);
 
   const handleSubmit = (event: React.FormEvent) => {
     const data: Record<string, string> = {};
     errors = {};
-    status = statusEditTask.success;
+    status = EStatusEditTask.success;
     return (
       callback: (
         data: Record<string, string>,
-        status: statusEditTask,
+        status: EStatusEditTask,
         event: React.FormEvent
       ) => void
     ) => {
@@ -28,7 +28,7 @@ export function useForm(props: Props) {
         const validResult = validate(props.refs[key].current.value, key);
         if (validResult[key].length) {
           errors[key] = validResult[key];
-          status = statusEditTask.error;
+          status = EStatusEditTask.error;
         } else {
           data[key] = props.refs[key].current.value;
         }

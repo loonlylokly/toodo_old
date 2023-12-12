@@ -1,63 +1,23 @@
 import dayjs from 'dayjs';
-
-type MyInput = {
-  type: 'text' | 'date' | 'time';
-};
-
-type InputText = {
-  type: 'text';
-  maxlength?: {
-    value: number;
-    message?: string;
-  };
-  minlength?: {
-    value: number;
-    message?: string;
-  };
-  pattern?: {
-    value: RegExp;
-    message?: string;
-  };
-} & MyInput;
-
-type InputDate = {
-  type: 'date';
-  max?: {
-    value: dayjs.Dayjs;
-    message?: string;
-  };
-  min?: {
-    value: dayjs.Dayjs;
-    message?: string;
-  };
-} & MyInput;
-
-type InputTime = {
-  type: 'time';
-  max?: {
-    value: string;
-    message?: string;
-  };
-  min?: {
-    value: string;
-    message?: string;
-  };
-} & MyInput;
-
-type CombinedInput = InputText | InputDate | InputTime;
+import {
+  CombinedInput,
+  TInputDate,
+  TInputText,
+  TInputTime,
+} from '../../types/inputType';
 
 export type ValidationType = Record<string, CombinedInput>;
 
 export function Validation(validation: ValidationType) {
-  const isTextInput = (input: CombinedInput): input is InputText => {
+  const isTextInput = (input: CombinedInput): input is TInputText => {
     return input.type === 'text';
   };
 
-  const isDateInput = (input: CombinedInput): input is InputDate => {
+  const isDateInput = (input: CombinedInput): input is TInputDate => {
     return input.type === 'date';
   };
 
-  const isTimeInput = (input: CombinedInput): input is InputDate => {
+  const isTimeInput = (input: CombinedInput): input is TInputTime => {
     return input.type === 'time';
   };
 

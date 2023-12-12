@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Button } from 'shared/ui/button/button';
-import { Task } from 'types/task';
+import { TTask } from 'types/task';
 import { useMemo } from 'react';
 import dayjs from 'dayjs';
 import styles from './itemTask.module.css';
 
 type Props = {
-  task: Task;
+  task: TTask;
   removeTask: (id: string) => void;
 };
 

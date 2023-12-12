@@ -3,12 +3,12 @@ import { FormAddTask } from 'components/formAddTask/formAddTask';
 import { ListTasks } from 'components/listTasks/listTasks';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
-import { Task } from 'types/task';
+import { TTask } from 'types/task';
 import styles from './todoList.module.css';
 
 export function TodoList() {
   const { getStore, executor } = storeService.getInstance();
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<TTask[]>([]);
 
   useEffect(() => {
     function updateTasks() {

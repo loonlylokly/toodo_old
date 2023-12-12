@@ -5,7 +5,7 @@ import { FormEditTask } from 'components/formEditTask/formEditTask';
 import { Button } from 'shared/ui/button/button';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
-import { Task } from 'types/task';
+import { TTask } from 'types/task';
 // eslint-disable-next-line import/extensions
 import EditIcon from 'public/edit_square_icon.svg';
 import styles from './task.module.css';
@@ -13,7 +13,7 @@ import styles from './task.module.css';
 export function Task() {
   const { id } = useParams();
   const { getStore, executor } = storeService.getInstance();
-  const [task, setTask] = useState<Task>(() => executor.getTask(id));
+  const [task, setTask] = useState<TTask>(() => executor.getTask(id));
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const cachedDate = useMemo(
     () => dayjs(task.date).format('DD-MM-YYYY, HH:mm:ss'),
