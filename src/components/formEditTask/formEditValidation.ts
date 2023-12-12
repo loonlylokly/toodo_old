@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { ValidationType } from 'shared/formValid/validation';
 
 export const validation: ValidationType = {
-  name: {
+  text: {
     type: 'text',
     maxlength: {
       value: 10,
@@ -32,11 +32,11 @@ export const validation: ValidationType = {
     type: 'time',
     max: {
       value: '22:00:00',
-      message: 'Date too late',
+      message: 'Time too late',
     },
     min: {
       value: '07:00:00',
-      message: 'Date too early',
+      message: 'Time too early',
     },
   },
 };

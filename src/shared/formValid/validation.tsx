@@ -64,23 +64,38 @@ export function Validation(validation: ValidationType) {
   const validateInput = (input: CombinedInput, key: string, value: string) => {
     const errors = [];
     if (isTextInput(input)) {
-      if (input.maxlength.value < value.length) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'maxlength') &&
+        input.maxlength.value < value.length
+      ) {
         errors.push(input.maxlength.message);
       }
-      if (input.minlength.value > value.length) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'minlength') &&
+        input.minlength.value > value.length
+      ) {
         errors.push(input.minlength.message);
       }
-      if (!input.pattern.value.test(value)) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'pattern') &&
+        !input.pattern.value.test(value)
+      ) {
         errors.push(input.pattern.message);
       }
     }
 
     if (isDateInput(input)) {
       const dateValue = dayjs(value);
-      if (dateValue.isBefore(input.min.value, 'day')) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'min') &&
+        dateValue.isBefore(input.min.value, 'day')
+      ) {
         errors.push(input.min.message);
       }
-      if (dateValue.isAfter(input.min.value, 'day')) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'max') &&
+        dateValue.isAfter(input.min.value, 'day')
+      ) {
         errors.push(input.max.message);
       }
     }
@@ -89,10 +104,16 @@ export function Validation(validation: ValidationType) {
       const timeValue = dayjs(`2000-01-01T${value}`);
       const timeMin = dayjs(`2000-01-01T${input.min.value}`);
       const timeMax = dayjs(`2000-01-01T${input.max.value}`);
-      if (timeValue.isBefore(timeMin, 'seconds')) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'min') &&
+        timeValue.isBefore(timeMin, 'seconds')
+      ) {
         errors.push(input.min.message);
       }
-      if (timeValue.isAfter(timeMax, 'seconds')) {
+      if (
+        Object.prototype.hasOwnProperty.call(input, 'max') &&
+        timeValue.isAfter(timeMax, 'seconds')
+      ) {
         errors.push(input.max.message);
       }
     }
