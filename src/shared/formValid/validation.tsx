@@ -1,5 +1,6 @@
 import { ValidationType } from 'types/validationType';
 import { CombinedInput } from 'types/inputType';
+import { EStatusEditTask } from 'types/task';
 import { isTextInput, validateText } from './validationInput/validationText';
 import { isDateInput, validateDate } from './validationInput/validationDate';
 import { isTimeInput, validateTime } from './validationInput/validationTime';
@@ -22,12 +23,20 @@ export function Validation(validation: ValidationType) {
     return errors.join(', ');
   };
 
-  const validate = (value: string, key: string) => {
+  const validate = (
+    data: Record<string, string>
+  ): { status: EStatusEditTask; errors: Record<string, string> } => {
+    let status: EStatusEditTask = EStatusEditTask.success;
     const errors: Record<string, string> = {};
-    if (Object.prototype.hasOwnProperty.call(validation, key)) {
-      errors[key] = validateInput(validation[key], key, value);
-    }
-    return errors;
+    Object.keys(data).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(validation, key)) {
+        errors[key] = validateInput(validation[key], key, data[key]);
+        if (errors[key].length) {
+          status = EStatusEditTask.error;
+        }
+      }
+    });
+    return { status, errors };
   };
 
   return { validate };
