@@ -51,6 +51,23 @@ export function FormEditTask({ idTask, isOpen }: Props) {
     }
   };
 
+  const debounce = (cb: (...args: unknown[]) => void, delay: number = 1000) => {
+    let timeout: string | number | NodeJS.Timeout;
+    return (...args: unknown[]) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        cb(...args);
+      }, delay);
+    };
+  };
+
+  const updateDebounceText = debounce(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setText(e.target.value);
+    },
+    600
+  );
+
   return (
     <Dialog id="editTaskDialog" isOpen={isOpen}>
       <Form
@@ -58,11 +75,7 @@ export function FormEditTask({ idTask, isOpen }: Props) {
         className={styles.form}
         onSubmit={(e) => onSubmit(e)}
       >
-        <Input
-          type="text"
-          value={text}
-          onChange={(e) => setText(() => e.target.value)}
-        />
+        <Input type="text" defaultValue={text} onChange={updateDebounceText} />
         {errors.text ? (
           <ul className={styles.error__list}>
             {errors.text.map((error, index) => (
