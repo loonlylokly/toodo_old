@@ -6,41 +6,59 @@ export type TInput = {
 
 export type TInputText = {
   type: 'text';
-  maxlength?: {
-    value: number;
-    message?: string;
-  };
-  minlength?: {
-    value: number;
-    message?: string;
-  };
-  pattern?: {
-    value: RegExp;
-    message?: string;
+  args: {
+    minLength?: {
+      value: number;
+      message?: string;
+    };
+    maxLength?: {
+      value: number;
+      message?: string;
+    };
+    pattern?: {
+      value: RegExp;
+      message?: string;
+    };
+    required?: {
+      value: boolean;
+      message?: string;
+    };
   };
 } & TInput;
 
 export type TInputDate = {
   type: 'date';
-  max?: {
-    value: dayjs.Dayjs;
-    message?: string;
-  };
-  min?: {
-    value: dayjs.Dayjs;
-    message?: string;
+  args: {
+    min?: {
+      value: dayjs.Dayjs;
+      message?: string;
+    };
+    max?: {
+      value: dayjs.Dayjs;
+      message?: string;
+    };
+    required?: {
+      value: boolean;
+      message?: string;
+    };
   };
 } & TInput;
 
 export type TInputTime = {
   type: 'time';
-  max?: {
-    value: string;
-    message?: string;
-  };
-  min?: {
-    value: string;
-    message?: string;
+  args: {
+    min?: {
+      value: string;
+      message?: string;
+    };
+    max?: {
+      value: string;
+      message?: string;
+    };
+    required?: {
+      value: boolean;
+      message?: string;
+    };
   };
 } & TInput;
 

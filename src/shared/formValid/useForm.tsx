@@ -1,5 +1,6 @@
 import { EStatusEditTask } from 'types/task';
-import { Validation, ValidationType } from './validation';
+import { ValidationType } from 'types/validationType';
+import { Validation } from './validation';
 
 type Refs = Record<string, React.MutableRefObject<HTMLInputElement>>;
 

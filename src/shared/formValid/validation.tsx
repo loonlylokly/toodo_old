@@ -1,81 +1,22 @@
-import dayjs from 'dayjs';
-import {
-  CombinedInput,
-  TInputDate,
-  TInputText,
-  TInputTime,
-} from '../../types/inputType';
-
-export type ValidationType = Record<string, CombinedInput>;
+import { ValidationType } from 'types/validationType';
+import { CombinedInput } from 'types/inputType';
+import { isTextInput, validateText } from './validationInput/validationText';
+import { isDateInput, validateDate } from './validationInput/validationDate';
+import { isTimeInput, validateTime } from './validationInput/validationTime';
 
 export function Validation(validation: ValidationType) {
-  const isTextInput = (input: CombinedInput): input is TInputText => {
-    return input.type === 'text';
-  };
-
-  const isDateInput = (input: CombinedInput): input is TInputDate => {
-    return input.type === 'date';
-  };
-
-  const isTimeInput = (input: CombinedInput): input is TInputTime => {
-    return input.type === 'time';
-  };
-
   const validateInput = (input: CombinedInput, key: string, value: string) => {
     const errors = [];
     if (isTextInput(input)) {
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'maxlength') &&
-        input.maxlength.value < value.length
-      ) {
-        errors.push(input.maxlength.message);
-      }
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'minlength') &&
-        input.minlength.value > value.length
-      ) {
-        errors.push(input.minlength.message);
-      }
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'pattern') &&
-        !input.pattern.value.test(value)
-      ) {
-        errors.push(input.pattern.message);
-      }
+      errors.push(...validateText(input, value));
     }
 
     if (isDateInput(input)) {
-      const dateValue = dayjs(value);
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'min') &&
-        dateValue.isBefore(input.min.value, 'day')
-      ) {
-        errors.push(input.min.message);
-      }
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'max') &&
-        dateValue.isAfter(input.min.value, 'day')
-      ) {
-        errors.push(input.max.message);
-      }
+      errors.push(...validateDate(input, value));
     }
 
     if (isTimeInput(input)) {
-      const timeValue = dayjs(`2000-01-01T${value}`);
-      const timeMin = dayjs(`2000-01-01T${input.min.value}`);
-      const timeMax = dayjs(`2000-01-01T${input.max.value}`);
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'min') &&
-        timeValue.isBefore(timeMin, 'seconds')
-      ) {
-        errors.push(input.min.message);
-      }
-      if (
-        Object.prototype.hasOwnProperty.call(input, 'max') &&
-        timeValue.isAfter(timeMax, 'seconds')
-      ) {
-        errors.push(input.max.message);
-      }
+      errors.push(...validateTime(input, value));
     }
 
     return errors.join(', ');

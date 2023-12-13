@@ -1,42 +1,52 @@
 import dayjs from 'dayjs';
-import { ValidationType } from 'shared/formValid/validation';
+import { ValidationType } from 'types/validationType';
 
 export const validation: ValidationType = {
   text: {
     type: 'text',
-    maxlength: {
-      value: 10,
-      message: 'Out boundaries the maximum length',
-    },
-    minlength: {
-      value: 3,
-      message: 'Out boundaries the minimum length',
-    },
-    pattern: {
-      value: /[a-z]/i,
-      message: 'Does not match the sample',
+    args: {
+      maxLength: {
+        value: 10,
+        message: 'Out boundaries the maximum length',
+      },
+      minLength: {
+        value: 3,
+        message: 'Out boundaries the minimum length',
+      },
+      pattern: {
+        value: /[a-z]/i,
+        message: 'Does not match the sample',
+      },
+      required: {
+        value: true,
+        message: 'Empty task text',
+      },
     },
   },
   date: {
     type: 'date',
-    max: {
-      value: dayjs(Date.now()),
-      message: 'Date too late',
-    },
-    min: {
-      value: dayjs(Date.now()),
-      message: 'Date too early',
+    args: {
+      min: {
+        value: dayjs(Date.now()),
+        message: 'Date too early',
+      },
+      max: {
+        value: dayjs(Date.now()),
+        message: 'Date too late',
+      },
     },
   },
   time: {
     type: 'time',
-    max: {
-      value: '22:00:00',
-      message: 'Time too late',
-    },
-    min: {
-      value: '07:00:00',
-      message: 'Time too early',
+    args: {
+      min: {
+        value: '07:00:00',
+        message: 'Time too early',
+      },
+      max: {
+        value: '22:00:00',
+        message: 'Time too late',
+      },
     },
   },
 };
