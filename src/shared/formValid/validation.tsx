@@ -7,27 +7,27 @@ import { isTimeInput, validateTime } from './validationInput/validationTime';
 
 export function Validation(validation: ValidationType) {
   const validateInput = (input: CombinedInput, key: string, value: string) => {
-    const errors = [];
     if (isTextInput(input)) {
-      errors.push(...validateText(input, value));
+      return validateText(input, value);
     }
 
     if (isDateInput(input)) {
-      errors.push(...validateDate(input, value));
+      return validateDate(input, value);
+      // errors.push(...validateDate(input, value));
     }
 
     if (isTimeInput(input)) {
-      errors.push(...validateTime(input, value));
+      return validateTime(input, value);
+      // errors.push(...validateTime(input, value));
     }
-
-    return errors.join(', ');
+    return [];
   };
 
   const validate = (
     data: Record<string, string>
-  ): { status: EStatusEditTask; errors: Record<string, string> } => {
+  ): { status: EStatusEditTask; errors: Record<string, string[]> } => {
     let status: EStatusEditTask = EStatusEditTask.success;
-    const errors: Record<string, string> = {};
+    const errors: Record<string, string[]> = {};
     Object.keys(data).forEach((key) => {
       if (Object.prototype.hasOwnProperty.call(validation, key)) {
         errors[key] = validateInput(validation[key], key, data[key]);

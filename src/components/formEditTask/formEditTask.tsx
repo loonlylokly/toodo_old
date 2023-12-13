@@ -64,7 +64,13 @@ export function FormEditTask({ idTask, isOpen }: Props) {
           onChange={(e) => setText(() => e.target.value)}
         />
         {errors.text ? (
-          <p style={{ color: 'red' }}>{errors.text.toString()}</p>
+          <ul className={styles.error__list}>
+            {errors.text.map((error, index) => (
+              <li className={styles.error} key={index}>
+                {error}
+              </li>
+            ))}
+          </ul>
         ) : null}
 
         <Input
@@ -73,7 +79,13 @@ export function FormEditTask({ idTask, isOpen }: Props) {
           onChange={(e) => setDate(() => e.target.value)}
         />
         {errors.date ? (
-          <p style={{ color: 'red' }}>{errors.date.toString()}</p>
+          <ul className={styles.error__list}>
+            {errors.date.map((error, index) => (
+              <li className={styles.error} key={index}>
+                {error}
+              </li>
+            ))}
+          </ul>
         ) : null}
 
         <Input
@@ -82,15 +94,22 @@ export function FormEditTask({ idTask, isOpen }: Props) {
           onChange={(e) => setTime(() => e.target.value)}
         />
         {errors.time ? (
-          <p style={{ color: 'red' }}>{errors.time.toString()}</p>
+          <ul className={styles.error__list}>
+            {errors.time.map((error, index) => (
+              <li className={styles.error} key={index}>
+                {error}
+              </li>
+            ))}
+          </ul>
         ) : null}
 
-        <Button styleType="primary" type="submit">
+        <Button styleType="primary" styleClass={styles.btnSubmit} type="submit">
           Save
         </Button>
         <Button
           type="button"
           styleType="secondary"
+          styleClass={styles.btnCancel}
           onClick={() => {
             executor.isOpen(false);
           }}

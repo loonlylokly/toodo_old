@@ -57,6 +57,7 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/no-array-index-key': 'off',
     'react/require-default-props': 'warn',
     'react/button-has-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
