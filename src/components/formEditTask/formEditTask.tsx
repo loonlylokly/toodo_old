@@ -28,33 +28,35 @@ export function FormEditTask({ idTask, isOpen }: Props) {
     () => dayjs(dateTask).format('HH:mm:ss'),
     [dateTask]
   );
-  const [text, setText] = useState<string>(() => textTask);
-  const [date, setDate] = useState<string>(() => cachedDate);
-  const [time, setTime] = useState<string>(() => cachedTime);
+  const [task, setTask] = useState(() => ({
+    text: textTask,
+    date: cachedDate,
+    time: cachedTime,
+  }));
 
   const { status, errors } = Validation(validation).validate({
-    text,
-    date,
-    time,
+    text: task.text,
+    date: task.date,
+    time: task.time,
   });
 
   const onSubmit = (e: React.FormEvent) => {
     if (status === EStatusEditTask.error) {
       e.preventDefault();
     } else if (status === EStatusEditTask.success) {
-      let currDate = `${date} ${time}`;
-      if (!date) {
-        currDate = `${date.slice(0, 10)} ${time}`;
+      let currDate = `${task.date} ${task.time}`;
+      if (!task.date) {
+        currDate = `${task.date.slice(0, 10)} ${task.time}`;
       }
       const taskDate = dayjs(currDate).format();
-      executor.editTask(idTask, text, taskDate);
+      executor.editTask(idTask, task.text, taskDate);
       executor.isOpen(false);
     }
   };
 
   const updateDebounceText = debounce(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setText(e.target.value);
+      setTask((prev) => ({ ...prev, text: e.target.value }));
     },
     600
   );
@@ -66,7 +68,11 @@ export function FormEditTask({ idTask, isOpen }: Props) {
         className={styles.form}
         onSubmit={(e) => onSubmit(e)}
       >
-        <Input type="text" defaultValue={text} onChange={updateDebounceText} />
+        <Input
+          type="text"
+          defaultValue={task.text}
+          onChange={updateDebounceText}
+        />
         {errors.text ? (
           <ul className={styles.error__list}>
             {errors.text.map((error, index) => (
@@ -79,8 +85,10 @@ export function FormEditTask({ idTask, isOpen }: Props) {
 
         <Input
           type="date"
-          value={date}
-          onChange={(e) => setDate(() => e.target.value)}
+          value={task.date}
+          onChange={(e) =>
+            setTask((prev) => ({ ...prev, date: e.target.value }))
+          }
         />
         {errors.date ? (
           <ul className={styles.error__list}>
@@ -94,8 +102,10 @@ export function FormEditTask({ idTask, isOpen }: Props) {
 
         <Input
           type="time"
-          value={time}
-          onChange={(e) => setTime(() => e.target.value)}
+          value={task.time}
+          onChange={(e) =>
+            setTask((prev) => ({ ...prev, time: e.target.value }))
+          }
         />
         {errors.time ? (
           <ul className={styles.error__list}>
