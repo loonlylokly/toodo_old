@@ -1,9 +1,9 @@
 import { ItemTask } from 'components/itemTask/itemTask';
-import { Task } from 'types/task';
+import { TTask } from 'types/task';
 import styles from './listTasks.module.css';
 
 type Props = {
-  tasks: Task[];
+  tasks: TTask[];
   removeTask: (id: string) => void;
 };
 
@@ -12,7 +12,7 @@ export function ListTasks({ tasks, removeTask }: Props) {
     <div className={styles.wrapper}>
       <ul className={styles.list_task}>
         {tasks.length > 0 ? (
-          tasks.map((task: Task) => (
+          tasks.map((task: TTask) => (
             <ItemTask key={task.id} task={task} removeTask={removeTask} />
           ))
         ) : (

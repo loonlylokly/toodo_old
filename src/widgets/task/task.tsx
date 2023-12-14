@@ -1,21 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
 import { FormEditTask } from 'components/formEditTask/formEditTask';
 import { Button } from 'shared/ui/button/button';
-import { OptionsDate } from 'shared/config/dateConfig';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
-import { Task } from 'types/task';
+import { TTask } from 'types/task';
 // eslint-disable-next-line import/extensions
 import EditIcon from 'public/edit_square_icon.svg';
 import styles from './task.module.css';
 
 export function Task() {
   const { id } = useParams();
-  const { executor } = storeService.getInstance();
-  const [task, setTask] = useState<Task>(() => executor.getTask(id));
+  const { getStore, executor } = storeService.getInstance();
+  const [task, setTask] = useState<TTask>(() => executor.getTask(id));
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const cachedDate = useMemo(
-    () => new Date(task.date).toLocaleDateString('ru-RU', OptionsDate),
+    () => dayjs(task.date).format('DD-MM-YYYY, HH:mm:ss'),
     [task.date]
   );
 
@@ -23,9 +24,16 @@ export function Task() {
     function updateTask() {
       setTask(() => executor.getTask(id));
     }
+    function updateIsOpen() {
+      setIsOpen(() => getStore.isOpen);
+    }
+    window.addEventListener(EventList.updateDialogEditTask, updateIsOpen);
     window.addEventListener(EventList.updateTasks, updateTask);
-    return () => window.removeEventListener(EventList.updateTasks, updateTask);
-  }, [id, executor]);
+    return () => {
+      window.removeEventListener(EventList.updateTasks, updateTask);
+      window.removeEventListener(EventList.updateDialogEditTask, updateIsOpen);
+    };
+  }, [id, executor, getStore]);
 
   if (!task) {
     return <h1>There is no such task</h1>;
@@ -46,7 +54,7 @@ export function Task() {
           <EditIcon width={32} height={32} />
         </Button>
       </section>
-      <FormEditTask idTask={id} />
+      {isOpen && <FormEditTask idTask={id} isOpen={isOpen} />}
     </>
   );
 }
