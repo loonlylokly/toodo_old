@@ -7,6 +7,7 @@ import { Input } from 'shared/ui/input/input';
 import { storeService } from 'utils/storeService';
 import { Validation } from 'shared/formValid/validation';
 import { EStatusEditTask } from 'types/task';
+import { debounce } from 'shared/debounce/debounce';
 import { validation } from './formEditValidation';
 import styles from './formEditTask.module.css';
 
@@ -49,16 +50,6 @@ export function FormEditTask({ idTask, isOpen }: Props) {
       executor.editTask(idTask, text, taskDate);
       executor.isOpen(false);
     }
-  };
-
-  const debounce = (cb: (...args: unknown[]) => void, delay: number = 1000) => {
-    let timeout: string | number | NodeJS.Timeout;
-    return (...args: unknown[]) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        cb(...args);
-      }, delay);
-    };
   };
 
   const updateDebounceText = debounce(

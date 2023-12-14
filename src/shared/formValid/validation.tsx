@@ -13,12 +13,10 @@ export function Validation(validation: ValidationType) {
 
     if (isDateInput(input)) {
       return validateDate(input, value);
-      // errors.push(...validateDate(input, value));
     }
 
     if (isTimeInput(input)) {
       return validateTime(input, value);
-      // errors.push(...validateTime(input, value));
     }
     return [];
   };
