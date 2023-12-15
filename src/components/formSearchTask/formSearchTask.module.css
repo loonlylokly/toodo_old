@@ -1,0 +1,12 @@
+.wrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 70%;
+  min-width: 25rem;
+  max-width: 70rem;
+  display: grid;
+}
