@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { FormSearchTask } from 'components/formSearchTask/formSearchTask';
 import { ListTasks } from 'components/listTasks/listTasks';
+import { FormAddTask } from 'components/formAddTask/formAddTask';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
 import { TTask } from 'types/task';
-import FormAddTask from 'components/formAddTask/formAddTask';
 import styles from './todoList.module.css';
 
 export function TodoList() {
   const { getStore, executor } = storeService.getInstance();
-  const [tasks, setTasks] = useState<TTask[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [tasks, setTasks] = useState<TTask[]>([]);
   const [isOpenAddTask, setIsOpenAddTask] = useState<boolean>(false);
 
   useEffect(() => {

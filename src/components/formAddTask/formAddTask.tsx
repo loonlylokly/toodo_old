@@ -1,67 +1,50 @@
 import { useState } from 'react';
-import { storeService } from 'utils/storeService';
-import { Form } from 'shared/ui/form/form';
-import { Button } from 'shared/ui/button/button';
+import dayjs from 'dayjs';
+import { FormTask } from 'components/formTask/formTask';
 import { Validation } from 'shared/formValid/validation';
-import { EStatusEditTask } from 'types/task';
-import styles from './formAddTask.module.css';
+import { Dialog } from 'shared/ui/dialog/dialog';
+import { Button } from 'shared/ui/button/button';
+import { storeService } from 'utils/storeService';
+import { EStatusEditTask, TFormTask } from 'types/task';
 import { validationAddTask } from './formAddValidation';
+import styles from './formAddTask.module.css';
 
 type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 };
 
-export default function FormAddTask({ isOpen, setIsOpen }: Props) {
-  const [text, setText] = useState<string>('');
-  const [disabled, setDisable] = useState<boolean>(() => !text.length);
+export function FormAddTask({ isOpen, setIsOpen }: Props) {
   const { executor } = storeService.getInstance();
+  const [task, setTask] = useState<TFormTask>(() => ({
+    text: '',
+    datetime: '',
+  }));
   const { status, errors } = Validation(validationAddTask).validate({
-    text,
+    text: task.text,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (status === EStatusEditTask.success) {
-      executor.addTask(text);
-      setText(() => '');
-      setDisable(() => true);
+      const taskDate = dayjs(task.datetime).format();
+      executor.addTask(task.text, taskDate);
       setIsOpen(false);
+      setTask(() => ({ text: '', datetime: '' }));
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(() => e.target.value);
-    setDisable(() => !e.target.value.length);
   };
 
   if (isOpen) {
     return (
-      <div className={styles.wrapper}>
-        <Form className={styles.form} onSubmit={handleSubmit}>
-          <textarea onChange={handleChange} />
-          {errors.text ? (
-            <ul className={styles.error__list}>
-              {errors.text.map((error, index) => (
-                <li className={styles.error} key={index}>
-                  {error}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-          <div className={styles.btnWrapper}>
-            <Button
-              className={styles.btnCancel}
-              onClick={() => setIsOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button className={styles.btnAdd} disabled={disabled}>
-              Add
-            </Button>
-          </div>
-        </Form>
-      </div>
+      <Dialog id="addTaskDialog" isOpen={isOpen}>
+        <FormTask
+          setIsOpen={setIsOpen}
+          handleSubmit={handleSubmit}
+          errors={errors}
+          setTask={setTask}
+          task={task}
+        />
+      </Dialog>
     );
   }
 

@@ -5,16 +5,45 @@ import { FC, InputHTMLAttributes, MutableRefObject } from 'react';
 import styles from './input.module.css';
 
 type Props = {
-  styleClass?: string;
+  errors?: string[];
+  label?: string;
+  inputStyleClass?: string;
+  labelStyleClass?: string;
+  errorStyleClass?: string;
+  listErrorsStyleClass?: string;
   inputRef?: MutableRefObject<HTMLInputElement> | undefined;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: FC<Props> = ({ styleClass = '', inputRef, ...rest }) => {
+export const Input: FC<Props> = ({
+  errors = [],
+  label = '',
+  inputStyleClass = '',
+  labelStyleClass = '',
+  errorStyleClass = '',
+  listErrorsStyleClass = '',
+  inputRef,
+  ...rest
+}) => {
   return (
-    <input
-      className={`${styles.input} ${styleClass}`}
-      ref={inputRef}
-      {...rest}
-    />
+    <>
+      <label className={`${styles.label} ${labelStyleClass}`} htmlFor={label}>
+        {label}
+      </label>
+      <input
+        name={label}
+        className={`${styles.input} ${inputStyleClass}`}
+        ref={inputRef}
+        {...rest}
+      />
+      {errors ? (
+        <ul className={`${styles.list__errors} ${listErrorsStyleClass}`}>
+          {errors.map((error, index) => (
+            <li className={`${styles.error} ${errorStyleClass}`} key={index}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </>
   );
 };

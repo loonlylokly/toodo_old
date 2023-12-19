@@ -3,17 +3,3 @@
   flex-direction: column;
   row-gap: 0.5rem;
 }
-
-.error__list {
-  margin-inline: 10%;
-  width: 90%;
-}
-
-.error {
-  color: red;
-}
-
-.btnSubmit.btnSubmit,
-.btnCancel.btnCancel {
-  padding: 0.5rem;
-}

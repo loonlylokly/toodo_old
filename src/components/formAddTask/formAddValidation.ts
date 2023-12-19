@@ -5,8 +5,21 @@ export const validationAddTask: ValidationType = {
     type: 'text',
     args: {
       maxLength: {
-        value: 30,
+        value: 5,
         message: 'Out boundaries the maximum length',
+      },
+      required: {
+        value: true,
+        message: 'Empty text task',
+      },
+    },
+  },
+  datetime: {
+    type: 'datetime',
+    args: {
+      required: {
+        value: true,
+        message: 'Empty datetime',
       },
     },
   },

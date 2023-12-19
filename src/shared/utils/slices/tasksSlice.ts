@@ -7,12 +7,11 @@ export function taskSlice(state: StoreType) {
     return state.tasks.find((item) => item.id === id);
   };
 
-  const addTask = (textTask: string) => {
-    const dateTask = dayjs().format();
+  const addTask = (textTask: string, datetimeTask?: string) => {
     state.tasks.push({
-      id: Date.now().toString(),
+      id: dayjs().valueOf().toString(),
       text: textTask,
-      date: dateTask.toString(),
+      date: datetimeTask || dayjs().format().toString(),
     });
     window.dispatchEvent(new CustomEvent(EventList.updateTasks));
   };

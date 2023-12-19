@@ -14,7 +14,30 @@
   justify-content: center;
 }
 
+.btnWrapper {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1rem;
+}
+
+.btnAdd {
+  padding: 1rem;
+}
+
+.btnCancel {
+  padding: 1rem
+}
+
 .btnAddTask {
   width: fit-content;
   padding:  0.5rem;
+}
+
+.error__list {
+  margin-inline: 10%;
+  width: 90%;
+}
+
+.error {
+  color: red;
 }

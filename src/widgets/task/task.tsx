@@ -15,23 +15,15 @@ export function Task() {
   const { getStore, executor } = storeService.getInstance();
   const [task, setTask] = useState<TTask>(() => executor.getTask(id));
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const cachedDate = useMemo(
-    () => dayjs(task.date).format('DD-MM-YYYY, HH:mm:ss'),
-    [task.date]
-  );
+  const cachedDatetime = useMemo(() => dayjs(task.date), [task.date]);
 
   useEffect(() => {
     function updateTask() {
       setTask(() => executor.getTask(id));
     }
-    function updateIsOpen() {
-      setIsOpen(() => getStore.isOpen);
-    }
-    window.addEventListener(EventList.updateDialogEditTask, updateIsOpen);
     window.addEventListener(EventList.updateTasks, updateTask);
     return () => {
       window.removeEventListener(EventList.updateTasks, updateTask);
-      window.removeEventListener(EventList.updateDialogEditTask, updateIsOpen);
     };
   }, [id, executor, getStore]);
 
@@ -45,16 +37,20 @@ export function Task() {
         <div className={styles.wrapper}>
           <h1 className={styles.text}>{task.text}</h1>
           <p>{task.id}</p>
-          <p>{cachedDate}</p>
+          <p>{cachedDatetime.format('DD-MM-YYYY, HH:mm:ss')}</p>
         </div>
-        <Button
-          styleClass={styles.btn_edit}
-          onClick={() => executor.isOpen(true)}
-        >
+        <Button styleClass={styles.btn_edit} onClick={() => setIsOpen(true)}>
           <EditIcon width={32} height={32} />
         </Button>
       </section>
-      {isOpen && <FormEditTask idTask={id} isOpen={isOpen} />}
+      {isOpen && (
+        <FormEditTask
+          taskCurrent={task}
+          cachedDatetime={cachedDatetime}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </>
   );
 }

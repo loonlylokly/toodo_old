@@ -4,6 +4,10 @@ import { EStatusEditTask } from 'types/task';
 import { isTextInput, validateText } from './validationInput/validationText';
 import { isDateInput, validateDate } from './validationInput/validationDate';
 import { isTimeInput, validateTime } from './validationInput/validationTime';
+import {
+  isDatetimeInput,
+  validateDatetime,
+} from './validationInput/validationDatetime';
 
 export function Validation(validation: ValidationType) {
   const validateInput = (input: CombinedInput, key: string, value: string) => {
@@ -17,6 +21,10 @@ export function Validation(validation: ValidationType) {
 
     if (isTimeInput(input)) {
       return validateTime(input, value);
+    }
+
+    if (isDatetimeInput(input)) {
+      return validateDatetime(input, value);
     }
     return [];
   };
