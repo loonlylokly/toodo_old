@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { FormEditTask } from 'components/formEditTask/formEditTask';
+import { DialogEditTask } from 'components/dialogEditTask/dialogEditTask';
 import { Button } from 'shared/ui/button/button';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
@@ -44,7 +44,7 @@ export function Task() {
         </Button>
       </section>
       {isOpen && (
-        <FormEditTask
+        <DialogEditTask
           taskCurrent={task}
           cachedDatetime={cachedDatetime}
           isOpen={isOpen}

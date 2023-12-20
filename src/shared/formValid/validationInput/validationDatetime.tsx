@@ -17,7 +17,7 @@ export const validateDatetime = (input: TInputDatetime, value: string) => {
     if (elem === 'min' && dateValue.isAfter(input.args[elem].value)) {
       errors.push(input.args[elem].message);
     }
-    if (elem === 'required' && input.args[elem].value && value === undefined) {
+    if (elem === 'required' && input.args[elem].value && value === '') {
       errors.push(input.args[elem].message);
     }
   });

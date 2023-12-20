@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FormSearchTask } from 'components/formSearchTask/formSearchTask';
 import { ListTasks } from 'components/listTasks/listTasks';
-import { FormAddTask } from 'components/formAddTask/formAddTask';
+import { DialogAddTask } from 'components/dialogAddTask/dialogAddTask';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
 import { TTask } from 'types/task';
@@ -28,7 +28,7 @@ export function TodoList() {
     <section className={styles.todo_list}>
       <FormSearchTask setSearch={setSearch} />
       <ListTasks tasks={tasks} removeTask={executor.removeTask} />
-      <FormAddTask
+      <DialogAddTask
         isOpen={isOpenAddTask}
         setIsOpen={(isOpen) => setIsOpenAddTask(() => isOpen)}
       />

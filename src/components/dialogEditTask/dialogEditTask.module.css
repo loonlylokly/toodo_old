@@ -8,12 +8,6 @@
   row-gap: 1rem;
 }
 
-.wrapper {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
 .btnWrapper {
   display: flex;
   justify-content: flex-end;
@@ -26,18 +20,4 @@
 
 .btnCancel {
   padding: 1rem
-}
-
-.btnAddTask {
-  width: fit-content;
-  padding:  0.5rem;
-}
-
-.error__list {
-  margin-inline: 10%;
-  width: 90%;
-}
-
-.error {
-  color: red;
 }
