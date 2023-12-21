@@ -2,36 +2,39 @@ import { Input } from 'shared/ui/input/input';
 import { EStatusEditTask, TFormTask } from 'types/task';
 
 type Props = {
+  errors: Record<string, string[]>;
+  setErrors: React.Dispatch<React.SetStateAction<Record<string, string[]>>>;
+  task: TFormTask;
+  // eslint-disable-next-line react/require-default-props
+  cachedDatetime?: string;
   validator: {
     validate: (data: Record<string, string>) => {
       status: EStatusEditTask;
       errors: Record<string, string[]>;
     };
   };
-  task: TFormTask;
-  setTask: React.Dispatch<React.SetStateAction<TFormTask>>;
-  errors: Record<string, string[]>;
-  setErrors: React.Dispatch<React.SetStateAction<Record<string, string[]>>>;
-  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
-  // eslint-disable-next-line react/require-default-props
-  cachedDatetime?: string;
+  setTask: (
+    cb: (prev: TFormTask) => {
+      datetime: string;
+      text: string;
+    },
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 };
 
 export function FieldsFormTask({
   validator,
+  cachedDatetime,
   task,
-  setTask,
-  setDisabled,
   errors,
+  setTask,
   setErrors,
-  cachedDatetime = '',
 }: Props) {
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { errors } = validator.validate({
       text: e.target.value,
     });
-    setTask((prev) => ({ ...prev, text: e.target.value }));
-    setDisabled(() => !e.target.value.length && !task.datetime.length);
+    setTask((prev) => ({ ...prev, text: e.target.value }), e);
     setErrors((prev) => ({ ...prev, text: errors.text }));
   };
 
@@ -39,8 +42,7 @@ export function FieldsFormTask({
     const { errors } = validator.validate({
       datetime: e.target.value,
     });
-    setTask((prev) => ({ ...prev, datetime: e.target.value }));
-    setDisabled(() => !e.target.value.length && !task.datetime.length);
+    setTask((prev) => ({ ...prev, datetime: e.target.value }), e);
     setErrors((prev) => ({ ...prev, datetime: errors.datetime }));
   };
 

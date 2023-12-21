@@ -12,7 +12,7 @@ import styles from './dialogAddTask.module.css';
 
 type Props = {
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function DialogAddTask({ isOpen, setIsOpen }: Props) {
@@ -24,8 +24,17 @@ export function DialogAddTask({ isOpen, setIsOpen }: Props) {
 
   const validator = Validation(validationAddTask);
   const [errors, setErrors] = useState<Record<string, string[]>>({});
-  const [disabled, setDisabled] = useState<boolean>(false);
-
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const handleTask = (
+    cb: (prev: TFormTask) => {
+      datetime: string;
+      text: string;
+    },
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTask((prev) => cb(prev));
+    setDisabled(() => !e.target.value.length && !task.datetime.length);
+  };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { status, errors: errorsValid } = validator.validate({
@@ -41,39 +50,28 @@ export function DialogAddTask({ isOpen, setIsOpen }: Props) {
     }
   };
 
-  if (isOpen) {
-    return (
-      <Dialog id="addTaskDialog" isOpen={isOpen}>
-        <Form className={styles.form} onSubmit={handleSubmit}>
-          <FieldsFormTask
-            validator={validator}
-            task={task}
-            setTask={setTask}
-            errors={errors}
-            setErrors={setErrors}
-            setDisabled={setDisabled}
-          />
-          <div className={styles.btnWrapper}>
-            <Button
-              styleClass={styles.btnCancel}
-              onClick={() => setIsOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button styleClass={styles.btnAdd} disabled={disabled}>
-              Add
-            </Button>
-          </div>
-        </Form>
-      </Dialog>
-    );
-  }
-
   return (
-    <div className={styles.wrapper}>
-      <Button className={styles.btnAddTask} onClick={() => setIsOpen(true)}>
-        Add Task
-      </Button>
-    </div>
+    <Dialog id="addTaskDialog" isOpen={isOpen}>
+      <Form className={styles.form} onSubmit={handleSubmit}>
+        <FieldsFormTask
+          validator={validator}
+          task={task}
+          setTask={handleTask}
+          errors={errors}
+          setErrors={setErrors}
+        />
+        <div className={styles.btnWrapper}>
+          <Button
+            styleClass={styles.btnCancel}
+            onClick={() => setIsOpen(false)}
+          >
+            Cancel
+          </Button>
+          <Button styleClass={styles.btnAdd} disabled={disabled}>
+            Add
+          </Button>
+        </div>
+      </Form>
+    </Dialog>
   );
 }

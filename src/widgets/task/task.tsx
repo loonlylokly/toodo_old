@@ -46,7 +46,7 @@ export function Task() {
       {isOpen && (
         <DialogEditTask
           taskCurrent={task}
-          cachedDatetime={cachedDatetime}
+          cachedDatetime={cachedDatetime.format('YYYY-DD-MMT:HH:mm')}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
         />

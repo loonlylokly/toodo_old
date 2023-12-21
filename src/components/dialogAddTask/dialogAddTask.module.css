@@ -8,17 +8,6 @@
   row-gap: 1rem;
 }
 
-.wrapper {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.btnAddTask {
-  width: fit-content;
-  padding:  0.5rem;
-}
-
 .btnWrapper {
   display: flex;
   justify-content: flex-end;

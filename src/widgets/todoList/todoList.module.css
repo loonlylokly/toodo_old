@@ -4,3 +4,14 @@
   flex-direction: column;
   overflow-x: hidden;
 }
+
+.wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btnAddTask {
+  width: fit-content;
+  padding:  0.5rem;
+}

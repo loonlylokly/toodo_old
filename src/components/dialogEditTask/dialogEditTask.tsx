@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import { FieldsFormTask } from 'components/fieldsFormTask/fieldsFormTask';
 import { Validation } from 'shared/formValid/validation';
@@ -12,7 +12,7 @@ import styles from './dialogEditTask.module.css';
 
 type Props = {
   taskCurrent: TTask;
-  cachedDatetime: Dayjs;
+  cachedDatetime: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 };
@@ -31,6 +31,17 @@ export function DialogEditTask({
   const validator = Validation(validationEditTask);
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [disabled, setDisabled] = useState<boolean>(false);
+
+  const handleTask = (
+    cb: (prev: TFormTask) => {
+      datetime: string;
+      text: string;
+    },
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTask((prev) => cb(prev));
+    setDisabled(() => !e.target.value.length && !task.datetime.length);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,12 +62,11 @@ export function DialogEditTask({
       <Form className={styles.form} onSubmit={handleSubmit}>
         <FieldsFormTask
           validator={validator}
-          cachedDatetime={cachedDatetime.format('YYYY-DD-MMTHH:mm')}
+          cachedDatetime={cachedDatetime}
           task={task}
-          setTask={setTask}
+          setTask={handleTask}
           errors={errors}
           setErrors={setErrors}
-          setDisabled={setDisabled}
         />
         <div className={styles.btnWrapper}>
           <Button
