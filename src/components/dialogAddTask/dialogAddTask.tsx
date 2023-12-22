@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FieldsFormTask } from 'components/fieldsFormTask/fieldsFormTask';
 import { Validation } from 'shared/formValid/validation';
 import { Dialog } from 'shared/ui/dialog/dialog';
@@ -16,6 +16,7 @@ type Props = {
 };
 
 export function DialogAddTask({ isOpen, setIsOpen }: Props) {
+  const formRef = useRef<HTMLFormElement>(null);
   const { executor } = storeService.getInstance();
   const [task, setTask] = useState<TFormTask>(() => ({
     text: '',
@@ -47,12 +48,13 @@ export function DialogAddTask({ isOpen, setIsOpen }: Props) {
       executor.addTask(task.text, taskDate);
       setIsOpen(false);
       setTask(() => ({ text: '', datetime: '' }));
+      formRef.current.reset();
     }
   };
 
   return (
     <Dialog id="addTaskDialog" isOpen={isOpen}>
-      <Form className={styles.form} onSubmit={handleSubmit}>
+      <Form className={styles.form} onSubmit={handleSubmit} formRef={formRef}>
         <FieldsFormTask
           validator={validator}
           task={task}
@@ -62,6 +64,7 @@ export function DialogAddTask({ isOpen, setIsOpen }: Props) {
         />
         <div className={styles.btnWrapper}>
           <Button
+            type="button"
             styleClass={styles.btnCancel}
             onClick={() => setIsOpen(false)}
           >
