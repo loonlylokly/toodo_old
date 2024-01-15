@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { DialogEditTask } from 'components/dialogEditTask/dialogEditTask';
 import { Button } from 'shared/ui/button/button';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
 import { TTask } from 'types/task';
 // eslint-disable-next-line import/extensions
 import EditIcon from 'public/edit_square_icon.svg';
+import DialogTask from 'components/dialogTask/dialogTask';
 import styles from './task.module.css';
 
 export function Task() {
@@ -44,11 +44,14 @@ export function Task() {
         </Button>
       </section>
       {isOpen && (
-        <DialogEditTask
+        <DialogTask
           taskCurrent={task}
-          cachedDatetime={cachedDatetime.format('YYYY-MM-DDTHH:mm')}
           isOpen={isOpen}
-          setIsOpen={setIsOpen}
+          actionCancel={() => setIsOpen(false)}
+          actionConfirm={(text, taskDate) =>
+            executor.editTask(task.id, text, taskDate)
+          }
+          reset={false}
         />
       )}
     </>

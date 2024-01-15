@@ -1,16 +1,24 @@
 import { ValidationType } from 'types/validationType';
 
-export const validationAddTask: ValidationType = {
+export const validationTask: ValidationType = {
   text: {
     type: 'text',
     args: {
       maxLength: {
-        value: 5,
+        value: 10,
         message: 'Out boundaries the maximum length',
+      },
+      minLength: {
+        value: 3,
+        message: 'Out boundaries the minimum length',
+      },
+      pattern: {
+        value: /[a-z]/i,
+        message: 'Does not match the sample',
       },
       required: {
         value: true,
-        message: 'Empty text task',
+        message: 'Empty task text',
       },
     },
   },
@@ -19,7 +27,7 @@ export const validationAddTask: ValidationType = {
     args: {
       required: {
         value: true,
-        message: 'Empty datetime',
+        message: 'Empty date',
       },
     },
   },

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FormSearchTask } from 'components/formSearchTask/formSearchTask';
 import { ListTasks } from 'components/listTasks/listTasks';
-import { DialogAddTask } from 'components/dialogAddTask/dialogAddTask';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
 import { TTask } from 'types/task';
 import { Button } from 'shared/ui/button/button';
+import DialogTask from 'components/dialogTask/dialogTask';
 import styles from './todoList.module.css';
 
 export function TodoList() {
@@ -29,7 +29,11 @@ export function TodoList() {
     <section className={styles.todo_list}>
       <FormSearchTask setSearch={setSearch} />
       <ListTasks tasks={tasks} removeTask={executor.removeTask} />
-      <DialogAddTask isOpen={isOpenAddTask} setIsOpen={setIsOpenAddTask} />
+      <DialogTask
+        isOpen={isOpenAddTask}
+        actionConfirm={(text, taskDate) => executor.addTask(text, taskDate)}
+        actionCancel={() => setIsOpenAddTask(false)}
+      />
       <div className={styles.wrapper}>
         <Button
           className={styles.btnAddTask}
