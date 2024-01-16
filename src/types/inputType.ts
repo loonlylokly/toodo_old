@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 export type TInput = {
-  type: 'text' | 'date' | 'time';
+  type: 'text' | 'date' | 'time' | 'datetime';
 };
 
 export type TInputText = {
@@ -62,4 +62,26 @@ export type TInputTime = {
   };
 } & TInput;
 
-export type CombinedInput = TInputText | TInputDate | TInputTime;
+export type TInputDatetime = {
+  type: 'datetime';
+  args: {
+    min?: {
+      value: dayjs.Dayjs;
+      message?: string;
+    };
+    max?: {
+      value: dayjs.Dayjs;
+      message?: string;
+    };
+    required?: {
+      value: boolean;
+      message?: string;
+    };
+  };
+} & TInput;
+
+export type CombinedInput =
+  | TInputText
+  | TInputDate
+  | TInputTime
+  | TInputDatetime;

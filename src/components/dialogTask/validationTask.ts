@@ -1,7 +1,6 @@
-import dayjs from 'dayjs';
 import { ValidationType } from 'types/validationType';
 
-export const validation: ValidationType = {
+export const validationTask: ValidationType = {
   text: {
     type: 'text',
     args: {
@@ -23,29 +22,12 @@ export const validation: ValidationType = {
       },
     },
   },
-  date: {
-    type: 'date',
+  datetime: {
+    type: 'datetime',
     args: {
-      min: {
-        value: dayjs(Date.now()),
-        message: 'Date too early',
-      },
-      max: {
-        value: dayjs(Date.now()),
-        message: 'Date too late',
-      },
-    },
-  },
-  time: {
-    type: 'time',
-    args: {
-      min: {
-        value: '07:00:00',
-        message: 'Time too early',
-      },
-      max: {
-        value: '22:00:00',
-        message: 'Time too late',
+      required: {
+        value: true,
+        message: 'Empty date',
       },
     },
   },

@@ -4,13 +4,14 @@ import { ListTasks } from 'components/listTasks/listTasks';
 import { storeService } from 'utils/storeService';
 import { EventList } from 'utils/storeTypes';
 import { TTask } from 'types/task';
-import FormAddTask from 'components/formAddTask/formAddTask';
+import { Button } from 'shared/ui/button/button';
+import DialogTask from 'components/dialogTask/dialogTask';
 import styles from './todoList.module.css';
 
 export function TodoList() {
   const { getStore, executor } = storeService.getInstance();
-  const [tasks, setTasks] = useState<TTask[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [tasks, setTasks] = useState<TTask[]>([]);
   const [isOpenAddTask, setIsOpenAddTask] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,10 +29,19 @@ export function TodoList() {
     <section className={styles.todo_list}>
       <FormSearchTask setSearch={setSearch} />
       <ListTasks tasks={tasks} removeTask={executor.removeTask} />
-      <FormAddTask
+      <DialogTask
         isOpen={isOpenAddTask}
-        setIsOpen={(isOpen) => setIsOpenAddTask(() => isOpen)}
+        actionConfirm={(text, taskDate) => executor.addTask(text, taskDate)}
+        actionCancel={() => setIsOpenAddTask(false)}
       />
+      <div className={styles.wrapper}>
+        <Button
+          className={styles.btnAddTask}
+          onClick={() => setIsOpenAddTask(true)}
+        >
+          Add Task
+        </Button>
+      </div>
     </section>
   );
 }

@@ -4,6 +4,11 @@ export type TTask = {
   date: string;
 };
 
+export type TFormTask = {
+  text: string;
+  datetime: string;
+};
+
 export enum EStatusEditTask {
   error = 'error',
   success = 'success',
